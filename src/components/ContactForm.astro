@@ -1,0 +1,78 @@
+---
+import { contact } from '@configs/site.json'
+
+const services = ['Family Photos', 'Maternity Photos', 'Professional Photos']
+
+
+const today = new Date()
+const tommorow = today.toISOString().split('T')[0]
+const inSixMonths = new Date(today.setMonth(today.getMonth() + 6)).toISOString().split('T')[0]
+
+
+---
+
+<form  method="POST" action={`https://formsubmit.co/${contact.email}`}>
+  <input type="text" name="_honey" class="hidden">
+  <input type="hidden" name="_autoresponse" value="Thank you for contacting itsashade! We will be in touch with you shortly.">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value={`${Astro.url.origin}/thank-you`}>
+  <input type="hidden" name="_subject" value="Contact itsashade.com">
+  <div class="grid gap-3 grid-cols-6">
+    <h5 class=" col-span-full text-center">Let's get in touch</h5>
+    <div class="col-span-3">
+      <label for="first-name" class="block">First name</label>
+      <div class="mt-2">
+        <input type="text" required name="first-name" id="first-name" autocomplete="given-name" class="form-input">
+      </div>
+    </div>
+
+    <div class="col-span-3">
+      <label for="last-name" class="block">Last name</label>
+      <div class="mt-2">
+        <input type="text" required name="last-name" id="last-name" autocomplete="family-name" class="form-input">
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <label for="email" class="block">Email</label>
+      <div class="mt-2">
+        <input type="email" required name="email" id="email" autocomplete="email" class="form-input">
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <label for="phone" class="block">Phone number</label>
+      <div class="mt-2">
+        <input type="text" name="phone" id="phone" placeholder="" autocomplete="phone" class="form-input">
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <label for="date" class="block">When would you like to have your shoot?</label>
+      <div class="mt-2">
+        <input type="date" class="form-input" required id="date" name="date" value={tommorow} min={tommorow} max={inSixMonths} />
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <label for="service" class="block ">Service</label>
+      <div class="mt-2">
+        <select id="service" name="service" class="form-input">
+          {(services).map((title) => {
+              return (
+                  <option value={title}>{title}</option>
+              )
+          })}
+        </select>
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <label for="tellMeMore" class="block">Tell me more</label>
+      <div class="mt-2">
+        <textarea name="tellMeMore" id="tellMeMore"  class="form-input" />
+      </div>
+    </div>
+    <button role="button" type="submit" class=" cursor-pointer form-input col-span-full bg-black text-white">Send</button>
+  </div>
+</form>

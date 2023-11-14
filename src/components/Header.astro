@@ -1,0 +1,58 @@
+---
+import configs from '@configs/site.json'
+import ButtonLink from './ButtonLink.astro'
+import { isActiveLink } from 'src/utils'
+
+const { pathname } = Astro.url;
+---
+
+<header class="py-3 sm:py-8 xl:py-10">
+	<div class="mx-auto max-w-5xl px-8 sm:px-12 lg:px-8 xl:px-16">
+		<div class="flex flex-wrap justify-between lg:items-center">
+			<div class="relative z-30 flex w-full items-center italic justify-between overflow-hidden lg:w-auto">
+				<a href={configs.navigation.Home}>
+					{configs.title}
+				</a>
+				<button aria-label="humburger" id="hamburger" class="-mr-6 p-6 lg:hidden">
+					<div aria-hidden="true" class="m-auto h-0.5 w-6 rounded bg-primary transition duration-300 bg-black"></div>
+					<div aria-hidden="true" class="m-auto mt-2 h-0.5 w-6 rounded bg-primary transition duration-300 bg-black"></div>
+				</button>
+			</div>
+			<div id="navlinks" class="fixed inset-0 z-20 hidden h-full w-full text-white items-center justify-center backdrop-blur-3xl lg:text-black lg:static lg:block lg:h-auto lg:w-auto lg:bg-transparent lg:backdrop-blur-none">
+				<ul class="flex flex-col items-center gap-6 text-lg lg:flex-row lg:gap-0 lg:text-sm">
+					{
+						Object.entries(configs.navigation).map(([nav, link]) => {
+							const isActive = isActiveLink({ link, pathname })
+							return (
+								<li class="text-right transition duration-500 lg:text-left">
+									<a aria-current="page" href={link} class:list={["block px-6 py-1 opacity-50", { "opacity-100": isActive }]}>{nav}</a>
+								</li>
+							)
+						})
+					}
+					<ButtonLink href={configs.navigation['Contact us']} className=' lg:border-black' black />
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+const hamburger = document.querySelector("#hamburger");
+const navlinks = document.querySelector("#navlinks");
+let isToggled = false;
+
+if (!hamburger) throw new Error('hamburger is null')
+if (!navlinks) throw new Error('navlinks is null')
+
+hamburger.addEventListener("click", () => {
+    isToggled = !isToggled;
+    if (isToggled) {
+        navlinks.classList.replace("hidden", "flex");
+        hamburger.classList.add("toggled");
+    } else {
+        navlinks.classList.replace("flex", "hidden");
+        hamburger.classList.remove("toggled");
+    }
+});
+</script>

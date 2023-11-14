@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-primary tracking-wide text-lg;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-secondary leading-tight uppercase;
+}
+
+h1,
+h2 {
+  @apply text-4xl md:text-6xl;
+}
+
+.form-input {
+  @apply block w-full p-2 border-0 ring-1 ring-inset ring-black focus:ring-2 focus:ring-inset focus:ring-black placeholder:text-gray-400;
+}
+
+.content {
+  @apply prose-lg prose-p:tracking-wide prose-p:text-lg prose-headings:text-4xl prose-headings:font-bold;
+}
+
+/* tracking-wide transition-all delay-300 duration-500 group-hover:translate-y-0 */

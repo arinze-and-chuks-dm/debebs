@@ -1,0 +1,50 @@
+{
+  "title": "itsashade",
+  "domain": "https://itsashade.com",
+  "socials": {
+    "instagram": "",
+    "facebook": "",
+    "twitter": ""
+  },
+  "navigation": {
+    "Home": "/",
+    "Blog": "/blog",
+    "Contact us": "/contact-us",
+    "About us": "/about-us"
+  },
+  "contact": {
+    "email": "issashade4ever@gmail.com",
+    "phone": "1111111111"
+  },
+  "copyright": "© 2023 itsashade All rights reserved.",
+  "services": {
+    "Family Photos": {
+      "link": "/family-photos",
+      "image": {
+        "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",
+        "alt": "family photos"
+      }
+    },
+    "Maternity Photos": {
+      "link": "/maternity-photos",
+      "image": {
+        "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",
+        "alt": "maternity photos"
+      }
+    },
+    "Professional Photos": {
+      "link": "/professional-photos",
+      "image": {
+        "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",
+        "alt": "professional photos"
+      }
+    },
+    "Wedding Photos": {
+      "link": "/wedding-photos",
+      "image": {
+        "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",
+        "alt": "wedding photos"
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+---
+
+import familyPotrait from '@images/dallas-photographer-family-potrait.jpeg'
+import headShot1 from '@images/dallas-photographer-headshot-1.jpeg'
+import maternity from '@images/maternity-1.jpeg'
+import model1 from '@images/model-1.jpeg'
+import work5 from '@images/work5.webp'
+import work7 from '@images/work7.webp'
+import work9 from '@images/work9.webp'
+import { Image } from 'astro:assets'
+import ButtonLink from './ButtonLink.astro'
+
+const portfolio = [{
+    title: 'Professional Headshots',
+    image: {
+        src: headShot1,
+        alt: 'Female model headshot'
+    },
+    link: '/'
+},
+{
+    title: 'Famility Potraits',
+    image: {
+        src: familyPotrait,
+        alt: 'Dallas photographer Edwina Debebs'
+    },
+    link: '/'
+},{
+    title: 'Professional Headshots',
+    image: {
+        src: work5,
+        alt: 'Dallas photographer Edwina Debebs'
+    },
+    link: '/'
+}
+,{
+    title: 'Fashion Shoots',
+    className: 'object-center',
+    image: {
+        src: model1,
+        alt: 'Dallas photographer Edwina Debebs'
+    },
+    link: '/'
+},{
+    title: 'Professional Headshots',
+    image: {
+        src: work7,
+        alt: 'Dallas photographer Edwina Debebs'
+    },
+    link: '/'
+},{
+    title: 'Maternity Shoots',
+    image: {
+        src: maternity,
+        alt: 'Dallas photographer Edwina Debebs'
+    },
+    link: '/'
+},
+{
+    title: 'Professional Headshots',
+    image: {
+        src: work9,
+        alt: 'Dallas photographer Edwina Debebs'
+    },
+    link: '/'
+}
+]
+---
+
+
+<section class="space-y-10 px-2 md:px-14">
+    <ul role="list" class={`list-none gap-1 md:gap-14 grid grid-cols-4 grid-rows-3 h-screen [&>*:nth-child(2)]:col-span-2 [&>*:nth-child(4)]:col-span-2 [&>*:nth-child(4)]:row-span-2 [&>*:nth-child(6)]:row-span-2`}>
+       {portfolio.map((item, index) => {
+        const pos = index + 1
+            return <li class="overflow-hidden">
+                <a href="/" class="relative group text-white">
+                    <div class='absolute bottom-0 p-5 w-full flex justify-between items-top z-20 bg-black invisible group-hover:visible group-hover:animate-fade-up bg-opacity-50'>
+                        <span>{pos} / {item.title}</span>
+                    </div>
+                    <Image class:list={['transition-all duration-500 group-hover:scale-125 object-cover object-top h-full', item?.className]} src={item.image.src} alt={item.image.alt} /> 
+                </a>
+            </li>
+       })} 
+    </ul>
+<div class=" flex space-x-5 justify-center">
+    <ButtonLink black />
+    <ButtonLink text='See more' className='border-black' />
+</div>
+</section>
+
+
+
