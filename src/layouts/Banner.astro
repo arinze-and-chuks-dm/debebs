@@ -1,7 +1,9 @@
 ---
 import BaseHead from '@components/BaseHead.astro'
+import BookNowBanner from '@components/BookNowBanner.astro'
 import Footer from '@components/Footer.astro'
 import Header from '@components/Header.astro'
+import HoneyBookForm from '@components/HoneyBookForm.astro'
 import '../styles/style.css'
 
 type Props = {
@@ -20,14 +22,16 @@ const { title, description, image, noindex, canonical } =
 	<head>
 		<BaseHead title={title} image={image} noindex={noindex} canonical={canonical} description={description} />
 	</head>
-	<body class=" space-y-20 lg:space-y-40">
+	<body class="">
         <div class=" h-[50vh] md:h-[85vh] flex items-stretch flex-col mb-20">
 		    <Header />
             <slot name="banner-content" />
         </div>
-        <main class=" space-y-40">
+        <main class="space-y-40 mb-40">
             <slot />
         </main>
+        <BookNowBanner />
+        <HoneyBookForm />
 		<Footer />
 	</body>
 </html>

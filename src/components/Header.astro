@@ -22,10 +22,10 @@ const { pathname } = Astro.url;
 				<ul class="flex flex-col items-center gap-6 text-lg lg:flex-row lg:gap-0 lg:text-sm">
 					{
 						Object.entries(configs.navigation).map(([nav, link]) => {
-							const isActive = isActiveLink({ link, pathname })
+							const isCurrPage = isActiveLink({ link, pathname })
 							return (
 								<li class="text-right transition duration-500 lg:text-left">
-									<a aria-current="page" href={link} class:list={["block px-6 py-1 opacity-50", { "opacity-100": isActive }]}>{nav}</a>
+									<a aria-current={isCurrPage ? 'page' : 'false'} href={link} class:list={["block px-6 py-1", { "opacity-100": isCurrPage, 'opacity-50': !isCurrPage }]}>{nav}</a>
 								</li>
 							)
 						})

@@ -1,12 +1,24 @@
 ---
+import ButtonLink from "@components/ButtonLink.astro"
+import { navigation } from '@configs/site.json'
 import edwinaDebs from "@images/dallas-photographer-edwina-debebs.jpeg"
 import Base from "@layouts/Base.astro"
 import { Image } from "astro:assets"
+import { getEntryBySlug, type CollectionEntry } from "astro:content"
+
+const entry = await getEntryBySlug("about-us", "index");
+type Props = CollectionEntry<'about-us'>;
+
+const { Content } = await entry.render();
 ---
 
 <Base title='About Us' description='About itsashade'>
-    <section class="m-auto px-40">
-        <Image class=" object-fill h-32 w-10" src={edwinaDebs} alt="Dallas Photographer Edwina Debebs"/>
+    <section class="max-w-5xl my-20 mx-auto grid grid-cols-2 items-center place-items-center">
+        <Image class=" w-96" src={edwinaDebs} alt="Dallas Photographer Edwina Debebs"/>
+        <div class='content'>
+            <Content />
+            <ButtonLink href={navigation["Contact us"]} text="Contact us" black />
+        </div>
     </section>
 </Base>
 

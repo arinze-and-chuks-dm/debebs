@@ -3,10 +3,11 @@ import ButtonLink from '@components/ButtonLink.astro'
 import Testimonials from '@components/Testimonials.astro'
 import someImage from '@images/work1.webp'
 import Banner from '@layouts/Banner.astro'
-import { Image} from 'astro:assets'
+import { Image } from 'astro:assets'
 import AboutMe from '@components/AboutMe.astro'
 import Gallery from '@components/Gallery.astro'
 import BlogFeed from '@components/BlogFeed.astro'
+import { navigation } from '@configs/site.json'
 // https://wiso.foxthemes.me/classic-landing-2/
 ---
 
@@ -17,8 +18,8 @@ import BlogFeed from '@components/BlogFeed.astro'
 		<div  class="mx-auto max-w-5xl px-8 sm:px-12 lg:px-8 xl:px-16">
 			<div class="sm:w-4/5 text-white space-y-6">
 				<h1 class="text-3xl font-semibold sm:text-4xl lg:text-5xl lg:leading-snug">Edwina Debebs: Dallas Photographer</h1>
-				<p class="text-xl">You're next <span class="italic underline underline-offset-4" id="adj" set:text="family" /> photographer</p>
-				<ButtonLink className=' border-white' text='Book Now' />
+				<p class="text-xl">Your next <span class="italic underline underline-offset-4" id="adj" set:text="family" /> photographer</p>
+				<ButtonLink href={navigation['Contact us']} className=' border-white' text='Book Now' />
 			</div>
 		</div>	
 	</div>

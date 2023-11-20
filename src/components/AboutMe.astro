@@ -1,4 +1,5 @@
 ---
+import { navigation } from '@configs/site.json'
 import ButtonLink from "./ButtonLink.astro"
 ---
 
@@ -13,7 +14,7 @@ import ButtonLink from "./ButtonLink.astro"
     For the past five years, I have explored the different depths of photography, videography, and graphic design. No project is too challenging. So, what are your ideas? What is your vision? Let's talk about it and make your thoughts a reality.
    </blockquote>
 <div class=" flex space-x-5 justify-center">
-    <ButtonLink black />
-    <ButtonLink text='Hear the full story' className='border-black' />
+    <ButtonLink href={navigation['Contact us']} black />
+    <ButtonLink href={navigation["About us"]} text='Hear the full story' className='border-black' />
 </div>
 </section>

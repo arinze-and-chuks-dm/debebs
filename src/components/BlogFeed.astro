@@ -1,8 +1,10 @@
 ---
-import work9 from '@images/work9.webp'
 import { Image } from "astro:assets"
+import { getCollection } from 'astro:content'
 import ButtonLink from "./ButtonLink.astro"
 
+const allPosts = await getCollection('blog');
+const [latest, ...otherPosts] = allPosts.slice(0, 3);
 ---
 
 
@@ -11,52 +13,35 @@ import ButtonLink from "./ButtonLink.astro"
 <section >
     <div class="px-5 grid gap-10 grid-cols-1 lg:grid-cols-8 max-w-7xl mx-auto">
     <div class="lg:col-span-2 space-y-5">
-        <h4 class=" underline underline-offset-8 text-4xl decoration-slate-100 decoration-2">Blog</h4>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et fugiat aut quae fugit mollitia accusamus veniam earum nesciunt quos rerum cum amet ullam blanditiis ipsa</p>
-        <ButtonLink text='Read the blog' />
+        <h4 class="text-2xl decoration-slate-100 decoration-2" set:html={latest?.data.title} />
+        <p class="line-clamp-4" set:html={latest?.data.description} />
+        <ButtonLink href={latest?.slug} text='Read more' />
     </div>
-    <div class="lg:col-span-3 group">
+    {otherPosts.map(post => {
+        const { pubDate, updatedDate, title, description, cover } = post.data
+        const postDate = (updatedDate ?? pubDate)
+        const postDateMonth = postDate.toLocaleString('default', { month: 'short' })
+        const postDateDay =  postDate.toLocaleString('default', { day: 'numeric' })
+        const postDateYear =  postDate.toLocaleString('default', { year: 'numeric' })
+        return <div class="lg:col-span-3 group">
         <div class="overflow-hidden h-56">
-            <Image class:list={['transition-all relative duration-500 group-hover:scale-125 object-cover object-top h-full']} src={work9} alt={'hello'} /> 
+            <Image class:list={['transition-all relative duration-500 group-hover:scale-125 object-cover object-top h-full']} src={cover.src} alt={cover.alt} /> 
         </div>
-        <a href="/" class="divide-x-2 flex py-5">
-            <time datetime="2020-03-16" class="mr-7 flex flex-col">
+        <a href={post.slug} class="divide-x-2 flex py-5">
+            <time datetime={postDate.toDateString()} class="mr-7 flex flex-col text-center">
                 <span class=" text-7xl">
-                    16 
+                    {parseInt(postDateDay) > 10 ? postDateDay : '0' + postDateDay}
                 </span>
-                <span class=" text-sm">
-                    Jan, 2024
-                </span>
+                <span class=" text-sm" set:html={postDateMonth + ', ' + postDateYear} />
             </time>
             <div class="pl-5 flex flex-col justify-between">
-                <span class=" text-gray-500 text-xs">Maternity Shoot</span>
+                <span class=" text-gray-500 text-xs">{title}</span>
                 <p class="line-clamp-2">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta inventore harum unde aut optio esse earum quae quaerat quis!
+                    {description}
                 </p>
             </div>
         </a>
     </div>
-
-    <div class=" lg:col-span-3 group">
-        <div class="overflow-hidden h-56">
-            <Image class:list={['transition-all relative duration-500 group-hover:scale-125 object-cover object-top h-full']} src={work9} alt={'hello'} /> 
-        </div>
-        <a href="/" class=" divide-x-2 flex py-5">
-            <time datetime="2020-03-16" class="mr-7 flex flex-col">
-                <span class=" text-7xl">
-                    16 
-                </span>
-                <span class=" text-sm">
-                    Jan, 2024
-                </span>
-            </time>
-            <div class="pl-5 flex flex-col justify-between">
-                <span class=" text-gray-500 text-xs">Family Potrait</span>
-                <p class="line-clamp-2">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta inventore harum unde aut optio esse earum quae quaerat quis!
-                </p>
-            </div>
-        </a>
-    </div>
+    })}
     </div>
 </section>

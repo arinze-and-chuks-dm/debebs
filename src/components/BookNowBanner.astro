@@ -1,0 +1,13 @@
+---
+import { navigation } from '@configs/site.json'
+import ButtonLink from "./ButtonLink.astro"
+---
+
+
+
+<section class="p-5 md:py-32 bg-stone-900 text-white mx-auto">
+    <div class="flex flex-col items-center space-y-5 lg:flex-row max-w-5xl mx-auto lg:justify-around">
+        <p class=" lg:text-4xl text-center">Ready to capture memories with us?</p>
+        <ButtonLink href={navigation["Contact us"]} className='border-white' />
+    </div>
+</section>

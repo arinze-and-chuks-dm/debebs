@@ -1,0 +1,19 @@
+---
+import ButtonLink from "@components/ButtonLink.astro"
+import { navigation } from '@configs/site.json'
+import Base from "@layouts/Base.astro"
+---
+
+
+<Base title="" description="" noindex>
+    <section class=" h-[70vh]">
+    <div class=" text-center h-full space-y-10 flex flex-col items-center justify-center">
+        <div class=" space-y-3">
+        <p>404</p> 
+        <h1>Page not found</h1>
+        <p>Sorry, we couldn’t find the page you’re looking for.</p>
+        </div>
+        <ButtonLink href={navigation.Home} text="Go Back Home" black />
+    </div>
+    </section>
+</Base>

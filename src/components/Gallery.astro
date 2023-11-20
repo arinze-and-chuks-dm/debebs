@@ -1,5 +1,6 @@
 ---
 
+import { navigation } from '@configs/site.json'
 import familyPotrait from '@images/dallas-photographer-family-potrait.jpeg'
 import headShot1 from '@images/dallas-photographer-headshot-1.jpeg'
 import maternity from '@images/maternity-1.jpeg'
@@ -83,8 +84,8 @@ const portfolio = [{
        })} 
     </ul>
 <div class=" flex space-x-5 justify-center">
-    <ButtonLink black />
-    <ButtonLink text='See more' className='border-black' />
+    <ButtonLink href={navigation['Contact us']} black />
+    <ButtonLink href={navigation['About us']} text='See more' className='border-black' />
 </div>
 </section>
 
