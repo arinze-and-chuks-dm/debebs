@@ -5,20 +5,20 @@ import Header from '@components/Header.astro'
 import '../styles/style.css'
 
 type Props = {
-    metaTitle: string;
-    metaDescription: string;
+    title: string;
+    description: string;
     image?: string;
     noindex?: boolean;
     canonical?: string;
 }
 
-const { metaTitle, metaDescription, image, noindex, canonical } =
+const { title, description, image, noindex, canonical } =
   Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead metaTitle={metaTitle} image={image} noindex={noindex} canonical={canonical} metaDescription={metaDescription} />
+		<BaseHead title={title} image={image} noindex={noindex} canonical={canonical} description={description} />
 	</head>
 	<body class="grid min-h-screen grid-rows-[auto_1fr_auto]">
 		<Header />

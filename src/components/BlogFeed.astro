@@ -25,7 +25,7 @@ const [latest, ...otherPosts] = allPosts.slice(0, 3);
         const postDateYear =  postDate.toLocaleString('default', { year: 'numeric' })
         return <div class="lg:col-span-3 group">
         <div class="overflow-hidden h-56">
-            <Image class:list={['transition-all relative duration-500 group-hover:scale-125 object-cover object-top h-full']} src={cover.src} alt={cover.alt} /> 
+            <Image class:list={['transition-all relative duration-500 group-hover:scale-125 object-cover object-top h-full']} src={cover.img} alt={cover.alt} /> 
         </div>
         <a href={post.slug} class="divide-x-2 flex py-5">
             <time datetime={postDate.toDateString()} class="mr-7 flex flex-col text-center">

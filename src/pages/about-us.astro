@@ -6,8 +6,8 @@ import Base from "@layouts/Base.astro"
 import { Image } from "astro:assets"
 import { getEntryBySlug, type CollectionEntry } from "astro:content"
 
-const entry = await getEntryBySlug("about-us", "index");
-type Props = CollectionEntry<'about-us'>;
+const entry = await getEntryBySlug('aboutUs', "index");
+type Props = CollectionEntry<'aboutUs'>;
 
 const { Content } = await entry.render();
 ---

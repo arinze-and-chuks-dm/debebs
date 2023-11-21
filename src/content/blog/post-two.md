@@ -2,7 +2,7 @@
 title: 'A Guide to Crafting the Perfect Modeling Portfolio'
 description: "Welcome to the world of modeling, where every frame tells a story and every pose is an opportunity to express a unique personality. Aspiring models, whether you're just starting or looking to revamp your portfolio, understanding the art of photography is essential. In this blog, we'll delve into the intricacies of creating a modeling portfolio that not only showcases your versatility but also leaves a lasting impression on casting directors and agencies."
 pubDate: 'Jul 08 2022'
-cover: { src: '../../assets/images/work1.webp', alt: 'Placeholder image' }
+cover: { img: '../../assets/images/work1.webp', alt: 'Placeholder image' }
 ---
 
 Welcome to the world of modeling, where every frame tells a story and every pose is an opportunity to express a unique personality. Aspiring models, whether you're just starting or looking to revamp your portfolio, understanding the art of photography is essential. In this blog, we'll delve into the intricacies of creating a modeling portfolio that not only showcases your versatility but also leaves a lasting impression on casting directors and agencies.

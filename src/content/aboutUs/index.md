@@ -1,7 +1,6 @@
 ---
 title: 'I’m John Doe, A content writer based in LDN, Currently at Bookworm'
 description: 'Lorem ipsum dolor sit amet'
-image: { src: '/images/author.png', alt: 'John Doe' }
 ---
 
 # Hello I'm Edwina Debebs

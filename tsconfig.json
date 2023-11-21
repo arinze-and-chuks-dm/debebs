@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "es6",
     "strictNullChecks": true,
+    "exactOptionalPropertyTypes": false,
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],

@@ -11,7 +11,7 @@ const blog = defineCollection({
       updatedDate: z.coerce.date().optional(),
       draft: z.boolean().optional(),
       cover: z.object({
-        src: image().refine((img) => img.width >= 600, {
+        img: image().refine((img) => img.width >= 600, {
           message: 'Image must be at least 600px wide',
         }),
         alt: z.string(),
@@ -19,20 +19,12 @@ const blog = defineCollection({
     }),
 });
 
-const aboutMe = defineCollection({
-  schema: ({ image }) =>
+const aboutUs = defineCollection({
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string(),
-      image: z
-        .object({
-          src: image().refine((img) => img.width >= 600, {
-            message: 'Image must be at least 600px wide',
-          }),
-          alt: z.string(),
-        })
-        .optional(),
     }),
 });
 
-export const collections = { blog, aboutMe };
+export const collections = { blog, aboutUs };
