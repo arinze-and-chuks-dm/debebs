@@ -18,28 +18,28 @@
   },
   "copyright": "© 2023 itsashade All rights reserved.",
   "services": {
-    "Family Photos": {
+    "Family potraits": {
       "link": "/family-photos",
       "image": {
         "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",
         "alt": "family photos"
       }
     },
-    "Maternity Photos": {
+    "Maternity shoots": {
       "link": "/maternity-photos",
       "image": {
         "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",
         "alt": "maternity photos"
       }
     },
-    "Professional Photos": {
+    "Professional headshots": {
       "link": "/professional-photos",
       "image": {
         "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",
         "alt": "professional photos"
       }
     },
-    "Wedding Photos": {
+    "Modeling photo shoot": {
       "link": "/wedding-photos",
       "image": {
         "src": "./assets/images/dallas-photographer-edwina-debebs.jpeg",

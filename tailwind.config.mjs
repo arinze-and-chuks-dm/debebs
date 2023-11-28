@@ -7,6 +7,9 @@ module.exports = {
         primary: ['"Quicksand"', 'sans-serif'],
         secondary: ['"Marcellus"', 'serif'],
       },
+      listStyleType: {
+        square: 'square',
+      },
       // height: {
       //   screen: ['100vh', '100dvh'],
       // },

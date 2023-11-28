@@ -11,7 +11,7 @@ type Props = {
 }
 
 
-const { title, description, canonical = new URL(Astro.url.pathname, Astro.site), image = '/src/assets/images/dallas-photographer-edwina-debebs.jpeg', noindex } = Astro.props;
+const { title, description, canonical = Astro.url.href, image = '/src/assets/images/dallas-photographer-edwina-debebs.jpeg', noindex } = Astro.props;
 ---
 
 <!-- Global Metadata -->

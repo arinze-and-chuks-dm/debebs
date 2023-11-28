@@ -1,39 +1,203 @@
 ---
-import ButtonLink from '@components/ButtonLink.astro'
-import Testimonials from '@components/Testimonials.astro'
-import someImage from '@images/work1.webp'
-import Banner from '@layouts/Banner.astro'
-import { Image } from 'astro:assets'
 import AboutMe from '@components/AboutMe.astro'
-import Gallery from '@components/Gallery.astro'
 import BlogFeed from '@components/BlogFeed.astro'
+import ButtonLink from '@components/ButtonLink.astro'
+import Gallery from '@components/Gallery.astro'
+import WhyChooseUs from '@components/WhyChooseUs.astro'
+import Testimonials from '@components/Testimonials.astro'
 import { navigation } from '@configs/site.json'
+import photo1 from '@images/dallas-photographer-family-potrait.jpeg'
+import work5 from '@images/work5.webp'
+import Banner from '@layouts/Banner.astro'
+import { Image, getImage } from 'astro:assets'
+import BookNowBanner from '@components/BookNowBanner.astro'
+import VideoSection from '@components/VideoSection.astro'
+import Faq from '@components/Faq.astro'
 // https://wiso.foxthemes.me/classic-landing-2/
+const optimizedWork5 = await getImage({ src: work5 })
 ---
 
-
-<Banner title='Dallas Photgrapher' description='Dallas Photographer'>
+<Banner title='A family photographer in Dallas | Trusted Photographer in Texas' description="itsashade is a family photographer in Dallas focused on providing excellent service and capturing memories that will last a lifetime...">
     <div slot="banner-content" class={`relative animate-fade-right h-full flex flex-col justify-center`}>
-		<Image src={someImage} alt="" class='absolute object-cover h-full w-full -z-10 brightness-50' />
-		<div  class="mx-auto max-w-5xl px-8 sm:px-12 lg:px-8 xl:px-16">
-			<div class="sm:w-4/5 text-white space-y-6">
-				<h1 class="text-3xl font-semibold sm:text-4xl lg:text-5xl lg:leading-snug">Edwina Debebs: Dallas Photographer</h1>
-				<p class="text-xl">Your next <span class="italic underline underline-offset-4" id="adj" set:text="family" /> photographer</p>
+		<Image src={photo1} alt="family potrait" class='absolute object-top object-cover h-full w-full -z-10 brightness-50' />
+		<div  class="mx-auto max-w-5xl px-8 sm:px-12 xl:px-16">
+			<div class=" text-white space-y-5 md:space-y-10">
+				<h1 class="text-sm"><span class=" italic">itsashade</span>: award-winning Dallas Family Photographer</h1>
+				<p class="text-3xl lg:text-7xl font-semibold font-secondary">Your next <span class="italic underline underline-offset-4" id="adj" set:text="family" /><br /> photographer</p>
+				<p class="italic text-sm md:text-2xl">
+					Your all-in-one photography and videography solution in Dallas, Texas!
+				</p>
 				<ButtonLink href={navigation['Contact us']} className=' border-white' text='Book Now' />
 			</div>
 		</div>	
 	</div>
 	<AboutMe />
 	<Gallery />
+	<section class=" px-8 sm:px-12 xl:px-16 mx-auto space-y-10">
+		<h2 class=" text-center text-gray-500">Professional photography services</h2>
+		<p class="text-center md:max-w-3xl font-extrabold font-secondary mx-auto lg:text-3xl">Capturing Moments, Creating Memories: Where Professional Photography Meets Timeless Elegance</p>
+		<div class="grid lg:grid-cols-2 gap-10">
+			<Image src={photo1} alt="family potrait" class='object-cover w-full -z-10' />
+			<div class="space-y-5 max-w-5xl">
+				<h2 class="text-2xl">
+					Everything from family portraits to professional headshots.
+				</h2>
+				<div class="space-y-5 text-gray-500 text-sm">
+					<p>
+            Our dedicated team specializes in various photography genres, from warm and intimate family portraits to polished and professional headshots.
+					</p>
+					<p>
+            We cater to clients who want to make a statement with their photos. Families wishing to give an elegant edge to their portraits or professionals who want to stand out.
+					</p>
+					<p>
+            Regardless of the special occasion, we are here to help you exquisitely capture those precious moments in life.
+					</p>
+				</div>
+				<h2 class=" text-2xl">
+					We offer a variety of packages to fit your needs and budget
+				</h2>
+				<div class=" space-y-5 text-gray-500 text-sm">
+					<p>
+            Whether you're looking for a quick photo shoot or an all-day event, we have the perfect package.
+					</p>
+					<p>
+            We take a bespoke approach to our photography services. Perhaps a family portrait in the comfort of your home or a maternity shoot at one of the numerous beautiful studios around Dallas.     
+					</p>
+					<p>
+						You won't find anyone else in Texas who can capture those special moments like us and in a manner that caters to your needs so perfectly!
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class=" bg-slate-100 gap-10 px-8 sm:px-12 xl:px-16">
+		<div class="grid lg:grid-cols-2 space-y-10 max-w-7xl py-28 mx-auto">
+			<div class="space-y-4">
+				<h2>Keep us in mind for your next photo shoot in the DFW area</h2>
+          <ol class="space-y-5 list-decimal text-gray-600">
+          <li>Scheule a call with us for a free consultation</li>
+        <li>
+            In our introductory call, we will take the time to get to know you: your style, personality, and vision for the photo shoot. 
+            We will also go over any special requests or requirements you may have.
+        </li>
+        <li >
+            After the initial consultation, we will work with you to create a customized package that fits your needs and budget.
+          </li>
+        <li>
+            If everything suits you, we will review the details for a final time and then schedule a date for the photo shoot.   
+          </li>
+          </ol>
+			</div>
+			<div class="mx-auto space-y-5">
+					<h3>Photography services</h3>
+				<p class="text-2xl font-extrabold font-secondary">Work with a photographer that does it all</p>
+					<ul class='ml-10 grid grid-cols-2 gap-x-10 list-image-[url("../../public/check.svg")] list-square [&>li]:pl-2 [&>li::marker]:text-5xl' role="list">
+						<li>Family potrait</li>
+						<li>Maternity shoots</li>
+						<li>Wedding photography</li>
+						<li>Professional potraits</li>
+						<li>Modeling photo shoots</li>
+						<li>Photo framing</li>
+					</ul>
+        <p>and more...</p>
+					<ButtonLink black href={navigation['Contact us']} text='Book Now' />
+			</div>
+		</div>
+	</section>
 	<Testimonials />
+  <WhyChooseUs />
+  <BookNowBanner />
+  <VideoSection />
+  <section class="space-y-10  px-8 sm:px-12 xl:px-16">
+    <h2 class="text-center text-gray-600">Photograph framing in Dallas, TX</h2>
+   <p class="font-extrabold text-3xl font-secondary text-center">The wonderful world of photography framing</p> 
+    <div class="grid lg:grid-cols-2 max-w-7xl mx-auto gap-10">
+      <div class="grid md:grid-cols-2 grid-rows-2 gap-1">
+        <Image src={photo1} alt="" class='object-cover h-full w-full hidden md:block' />
+        <Image src={photo1} alt="" class='object-cover w-full h-full row-span-2' />
+        <Image src={photo1} alt="" class='object-cover h-full w-full hidden md:block' />
+      </div> 
+      <div class="space-y-5">
+        <p class="font-extrabold font-secondary">
+In an increasingly digital world, we continue to discover the allure of tangible beauty through the timeless charm of framed photographs.
+        </p>
+        <p>
+We provide a wide range of photography frames designed to complement every moment captured with style and sophistication.
+          From sleek modern designs to timeless classics, our diverse collection ensures that your cherished memories find the perfect frame to showcase them. 
+        </p>
+        <p>
+Explore our selection and transform your photos into timeless works of art that tell a story and become a captivating focal point in any space. Every moment deserves a frame that does justice to its unique beauty.
+          </p>
+        <ButtonLink black href={navigation['Contact us']} text='Book Now' />
+      </div>
+    </div>
+  </section>
+<section style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${optimizedWork5.src})`}} class="h-[80vh] bg-center px-10 flex flex-col justify-center m-auto text-center bg-no-repeat bg-cover text-white">
+    <div class="max-w-2xl mx-auto space-y-10">
+      <h2 class="text-2xl md:text-5xl">
+        Ever Wondered How Your Moments Would Look Framed?
+      </h2>
+      <p>
+        Discover the art of capturing memories with our photo frames.
+        We take your incredible photos and transform them into a work of art. 
+     </p>
+      <ButtonLink className="border-white mx-auto" href={navigation['Contact us']} text='Check out our frames' />
+    </div>
+  </section>
 	<BlogFeed />
-</Banner>	
+  <BookNowBanner />
+  <Faq faqs={[
+     {
+    q: "Why should we invest in professional family portraits?",
+    a: "Professional family portraits capture special moments and create lasting memories. They serve as a visual legacy, documenting the growth and connection of your family over time.",
+  },
+  {
+    q: "How do we prepare for a family portrait session?",
+    a: "Coordinate outfits with a cohesive color scheme, considering the location and season. Ensure everyone is comfortable, and consider bringing props or accessories that showcase your family's personality.",
+  },
+  {
+    q: "Where should we have our family portraits taken?",
+    a: "Choose a location that holds significance for your family, or opt for a professional studio. Outdoor settings like parks or beaches can provide a beautiful backdrop, while indoor studios offer controlled lighting conditions.",
+  },
+  {
+    q: "What should we wear for a family portrait?",
+    a: "Select outfits that coordinate with a harmonious color scheme, avoiding overly vibrant colors or busy patterns. Solid colors, subtle designs, and timeless styles often work well. Comfort is critical, and considering the season and location is essential.",
+  },
+  {
+    q: "How long does a typical family portrait session last?",
+    a: "The duration can vary but is generally around 1-2 hours. We want to allow various shots and ensure a relaxed atmosphere, especially with children.",
+  },
+  {
+    q: "What happens if the weather is unfavorable on the day of our outdoor session?",
+    a: "We can discuss alternatives, such as rescheduling or finding a suitable indoor location. Flexibility is critical to ensuring a successful photo session.",
+  },
+  {
+    q: "Can we include pets in our family portraits?",
+    a: "Absolutely! Pets are considered part of the family and can add a delightful photodynamic. Just let us know in advance so we can plan accordingly.",
+  },
+  {
+    q: "When will we receive our final edited images?",
+    a: "The turnaround time for edited images typically ranges from 1 to 4 weeks, depending on the photographer's workload. We prioritize delivering high-quality, carefully edited photos.",
+  },
+  {
+    q: "Can we order prints or additional products?",
+    a: "We offer various print sizes and products such as canvases or photo books. We can discuss your preferences during the ordering process.",
+  },
+  {
+    q: "How do you handle children during a photo session?",
+    a: "Patience is key! Our photographers are experienced in working with children and will use a combination of prompts, games, and a relaxed approach to capture genuine expressions.",
+  },
+  {
+    q: "What happens if we need to reschedule our session?",
+    a: "Life happens, and we understand. We appreciate as much notice as possible for rescheduling, and we'll work with you to find a new suitable date.",
+  },
+  ]} />
+</Banner>
 
 <script>
 	const adjEl = document.getElementById('adj')
 	if (!adjEl) throw new Error('Element with id "adj" not found')
-
-	const adjs = ['wedding', 'maternity', 'professional', 'family', 'model', 'fashion', 'event', 'birthday', 'graduation', 'anniversary', 'engagement', 'newborn', 'bridal', 'corporate', 'headshot', 'portrait', 'prom', 'quinceanera', 'pet', 'real estate']
+	const adjs = ['wedding', 'maternity', 'professional', 'family', 'model', 'fashion', 'graduation', 'newborn', 'portrait', 'real estate']
 
 	setInterval(() => {
 		let adj = adjs[Math.floor(Math.random() * adjs.length)] as typeof adjs[number]

@@ -4,6 +4,7 @@
 
 body {
   @apply font-primary tracking-wide text-lg;
+  text-wrap: balance;
 }
 h1,
 h2,
@@ -11,13 +12,13 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-secondary leading-tight;
+  @apply font-secondary leading-tight font-extrabold;
 }
 
-h1,
+/* h1,
 h2 {
   @apply text-4xl md:text-6xl;
-}
+} */
 
 .form-input {
   @apply block w-full p-2 border-0 ring-1 ring-inset ring-black focus:ring-2 focus:ring-inset focus:ring-black placeholder:text-gray-400;
