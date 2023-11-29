@@ -1,6 +1,5 @@
 ---
 const googleApiKey = import.meta.env.GOOGLE_API_KEY
-const googleLocationId = import.meta.env.GOOGLE_LOCATION_ID
 
 const res = await fetch(`https://places.googleapis.com/v1/places/ChIJj61dQgK6j4AR4GeTYWZsKWw?fields=id,displayName&key=${googleApiKey}`)
 const data = await res.json();
