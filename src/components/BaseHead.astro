@@ -22,15 +22,16 @@ const { title, description, canonical = Astro.url.href, image = '/src/assets/ima
 
 <!-- Font preloads -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet" />
-<!-- <link rel="preload" href="/fonts/Quicksand-Bold.woff" as="font" type="font/woff" crossorigin />
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com" /> -->
+<!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" /> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet" /> -->
+
+<link rel="preload" href="/fonts/Quicksand-Bold.woff" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/Quicksand-Light.woff" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/Quicksand-Medium.woff" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/Quicksand-Regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/Quicksand-SemiBold.woff" as="font" type="font/woff" crossorigin /> -->
+<link rel="preload" href="/fonts/Quicksand-SemiBold.woff" as="font" type="font/woff" crossorigin />
 
 <!-- canonical url -->
 {canonical && <link rel="canonical" href={canonical} item-prop="url" />}

@@ -6,12 +6,9 @@ import '../styles/style.css'
 
 import BlogFeed from '@components/BlogFeed.astro'
 import FormattedDate from '@components/FormattedDate.astro'
-import SearchBar from '@components/SearchBar.astro'
-import { navigation } from '@configs/site.json'
-import edwinaDebebs from '@images/dallas-photographer-edwina-debebs.jpeg'
-import work5 from '@images/work5.webp'
-import work7 from '@images/work7.webp'
-import work9 from '@images/work9.webp'
+// import SearchBar from '@components/SearchBar.astro'
+// import { navigation } from '@configs/site.json'
+// import edwinaDebebs from '@images/dallas-photographer-edwina-debebs.jpeg'
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 
@@ -37,32 +34,32 @@ const { title, description, pubDate, updatedDate, cover } = Astro.props;
 						<slot />
 					</div>
 				</article>
-				<aside>
-					<div class="sticky top-5 space-y-5">
-						<SearchBar />
-						<a href={navigation['About us']} class=" block space-y-4">
-							<Image src={edwinaDebebs} alt="Dallas photographer Edwina Debebs" class="w-full" />
-							<div class="divide-y space-y-2 px-2">
-								<h5>About Me</h5>
-								<p class=" line-clamp-6 text-gray-500 text-sm pt-2">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio laudantium, dolorum beatae aut cumque neque aliquid distinctio maxime commodi architecto, obcaecati porro repudiandae magnam. Porro, rem! Distinctio temporibus blanditiis iure?
-								</p>
-							</div>
-						</a>
-						<div class="space-y-1">
-							<h3 class=" mb-3">Backstage photos</h3>
-							<div class="overflow-hidden h-56 cursor-pointer">
-								<Image class:list={['transition-all relative duration-500 hover:scale-125 object-cover object-top h-full']} src={work5} alt={'hello'} /> 
-							</div>
-							<div class="overflow-hidden h-56 cursor-pointer">
-								<Image class:list={['transition-all relative duration-500 hover:scale-125 object-cover object-top h-full']} src={work7} alt={'hello'} /> 
-							</div>
-							<div class="overflow-hidden h-56 cursor-pointer">
-								<Image class:list={['transition-all relative duration-500 hover:scale-125 object-cover object-top h-full']} src={work9} alt={'hello'} /> 
-							</div>
-						</div>
-					</div>
-				</aside>
+				<!-- <aside> -->
+				<!-- 	<div class="sticky top-5 space-y-5"> -->
+				<!-- 		<SearchBar /> -->
+				<!-- 		<a href={navigation['About us']} class=" block space-y-4"> -->
+				<!-- 			<Image src={edwinaDebebs} alt="Dallas photographer Edwina Debebs" class="w-full" /> -->
+				<!-- 			<div class="divide-y space-y-2 px-2"> -->
+				<!-- 				<h5>About Me</h5> -->
+				<!-- 				<p class=" line-clamp-6 text-gray-500 text-sm pt-2"> -->
+				<!-- 					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio laudantium, dolorum beatae aut cumque neque aliquid distinctio maxime commodi architecto, obcaecati porro repudiandae magnam. Porro, rem! Distinctio temporibus blanditiis iure? -->
+				<!-- 				</p> -->
+				<!-- 			</div> -->
+				<!-- 		</a> -->
+				<!-- 		<div class="space-y-1"> -->
+				<!-- 			<h3 class=" mb-3">Backstage photos</h3> -->
+				<!-- 			<div class="overflow-hidden h-56 cursor-pointer"> -->
+				<!-- 				<Image class:list={['transition-all relative duration-500 hover:scale-125 object-cover object-top h-full']} src={work5} alt={'hello'} />  -->
+				<!-- 			</div> -->
+				<!-- 			<div class="overflow-hidden h-56 cursor-pointer"> -->
+				<!-- 				<Image class:list={['transition-all relative duration-500 hover:scale-125 object-cover object-top h-full']} src={work7} alt={'hello'} />  -->
+				<!-- 			</div> -->
+				<!-- 			<div class="overflow-hidden h-56 cursor-pointer"> -->
+				<!-- 				<Image class:list={['transition-all relative duration-500 hover:scale-125 object-cover object-top h-full']} src={work9} alt={'hello'} />  -->
+				<!-- 			</div> -->
+				<!-- 		</div> -->
+				<!-- 	</div> -->
+				<!-- </aside> -->
 			</div>
         </main>
 		<BlogFeed />

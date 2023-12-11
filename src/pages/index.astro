@@ -6,20 +6,23 @@ import Gallery from '@components/Gallery.astro'
 import WhyChooseUs from '@components/WhyChooseUs.astro'
 import Testimonials from '@components/Testimonials.astro'
 import { navigation } from '@configs/site.json'
-import photo1 from '@images/dallas-photographer-family-potrait.jpeg'
-import work5 from '@images/work5.webp'
+import familyPotrait from '@images/family-potrait.jpeg'
 import Banner from '@layouts/Banner.astro'
 import { Image, getImage } from 'astro:assets'
 import BookNowBanner from '@components/BookNowBanner.astro'
 import VideoSection from '@components/VideoSection.astro'
 import Faq from '@components/Faq.astro'
+import fashionOne from '@images/fas.png'
+import famTwo from '@images/fam-two.jpeg'
+import famThree from '@images/fam-three.jpeg'
+import _fasTwo from '@images/fas-two.jpeg'
 // https://wiso.foxthemes.me/classic-landing-2/
-const optimizedWork5 = await getImage({ src: work5 })
+const fasTwo = await getImage({ src: _fasTwo })
 ---
 
 <Banner title='A family photographer in Dallas | Trusted Photographer in Texas' description="itsashade is a family photographer in Dallas focused on providing excellent service and capturing memories that will last a lifetime...">
-    <div slot="banner-content" class={`relative animate-fade-right h-full flex flex-col justify-center`}>
-		<Image src={photo1} alt="family potrait" class='absolute object-top object-cover h-full w-full -z-10 brightness-50' />
+    <div slot="banner-content" class={`animate-fade-right relative bg-no-repeat backdrop-brightness-50  bg-cover h-full flex flex-col justify-center`}>
+		<Image src={familyPotrait} alt="family potrait" class='absolute object-top object-cover h-full w-full -z-10 brightness-50' />
 		<div  class="mx-auto max-w-5xl px-8 sm:px-12 xl:px-16">
 			<div class=" text-white space-y-5 md:space-y-10">
 				<h1 class="text-sm"><span class=" italic">itsashade</span>: award-winning Dallas Family Photographer</h1>
@@ -37,7 +40,7 @@ const optimizedWork5 = await getImage({ src: work5 })
 		<h2 class=" text-center text-gray-500">Professional photography services</h2>
 		<p class="text-center md:max-w-3xl font-extrabold font-secondary mx-auto lg:text-3xl">Capturing Moments, Creating Memories: Where Professional Photography Meets Timeless Elegance</p>
 		<div class="grid lg:grid-cols-2 gap-10">
-			<Image src={photo1} alt="family potrait" class='object-cover w-full -z-10' />
+			<Image src={famThree} alt="family potrait" class='object-cover w-full -z-10' />
 			<div class="space-y-5 max-w-5xl">
 				<h2 class="text-2xl">
 					Everything from family portraits to professional headshots.
@@ -113,9 +116,9 @@ const optimizedWork5 = await getImage({ src: work5 })
    <p class="font-extrabold text-3xl font-secondary text-center">The wonderful world of photography framing</p> 
     <div class="grid lg:grid-cols-2 max-w-7xl mx-auto gap-10">
       <div class="grid md:grid-cols-2 grid-rows-2 gap-1">
-        <Image src={photo1} alt="Framed photographs on a wall" class='object-cover h-full w-full hidden md:block' />
-        <Image src={photo1} alt="Square framed photographs" class='object-cover w-full h-full row-span-2' />
-        <Image src={photo1} alt="Wood photography frames" class='object-cover h-full w-full hidden md:block' />
+        <Image src={famTwo} alt="Framed photographs on a wall" class='object-cover h-full w-full hidden md:block' />
+        <Image src={fashionOne} alt="Square framed photographs" class='object-cover w-full h-full row-span-2' />
+        <Image src={familyPotrait} alt="Wood photography frames" class='object-cover h-full w-full hidden md:block' />
       </div> 
       <div class="space-y-5">
         <p class="font-extrabold font-secondary">
@@ -132,7 +135,7 @@ Explore our selection and transform your photos into timeless works of art that 
       </div>
     </div>
   </section>
-<section style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${optimizedWork5.src})`}} class="h-[80vh] bg-center px-10 flex flex-col justify-center m-auto text-center bg-no-repeat bg-cover text-white">
+<section style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${fasTwo.src})`}} class="h-[80vh] bg-center px-10 flex flex-col justify-center m-auto text-center bg-no-repeat bg-cover text-white">
     <div class="max-w-2xl mx-auto space-y-10">
       <h2 class="text-2xl md:text-5xl">
         Ever Wondered How Your Moments Would Look Framed?
@@ -141,7 +144,7 @@ Explore our selection and transform your photos into timeless works of art that 
         Discover the art of capturing memories with our photo frames.
         We take your incredible photos and transform them into a work of art. 
      </p>
-      <ButtonLink className="border-white mx-auto" href={navigation['Contact us']} text='Check out our frames' />
+      <!-- <ButtonLink className="border-white mx-auto" href={navigation['Contact us']} text='Check out our frames' /> -->
     </div>
   </section>
 	<BlogFeed />

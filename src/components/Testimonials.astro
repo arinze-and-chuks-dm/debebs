@@ -1,20 +1,27 @@
 ---
-import image1 from '@images/work3.webp'
+import profPotrait from '@images/prof-potrait.jpeg'
+import pot from '@images/pot.jpeg'
+import couple from '@images/couple.jpeg'
 import { getImage } from 'astro:assets'
 
-const imageOne = await getImage({ src: image1 })
+const profPotraitOne = await getImage({ src: profPotrait })
+const potOne = await getImage({ src: pot })
+const coupleOne = await getImage({ src: couple })
 const quotes = [
   {
     quote: 'my family looked absolutely stunning in the photos',
-  author: 'Chuks Grinage',
+    author: 'Chuks Grinage',
+    image: coupleOne
 },
   {
     quote: "we felt like celebrities during the photo shoot...",
-    author: "Jennifer Riley"
+    author: "Jennifer Riley",
+    image: profPotraitOne
   },
   {
     quote: "Edwina was truly incredible; we saw sides of ourselves we didn't know we had and I'm glad we captured it",
-    author: 'Stephen Mellanie'
+    author: 'Stephen Mellanie',
+    image: potOne
   }
 ]
 ---
@@ -22,9 +29,9 @@ const quotes = [
 
   <section class="text-center px-1 mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-1 text-white">
-      {quotes.map(({ quote, author}) => {
+      {quotes.map(({ quote, author, image}) => {
           return (
-            <div class="bg-cover italic bg-no-repeat h-80 relative flex flex-col justify-center px-10" style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${imageOne.src})`}}}>
+            <div class="bg-cover italic bg-no-repeat h-80 relative flex flex-col justify-center px-10" style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image.src})`}}}>
                 <p class="text-xl">"{quote}"</p>
                 <p class="text-sm absolute bottom-5 right-10">- {author}</p>
             </div>
