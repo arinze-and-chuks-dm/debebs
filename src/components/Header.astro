@@ -22,6 +22,7 @@ const { pathname } = Astro.url;
 				<ul class="flex flex-col items-center gap-6 text-lg lg:flex-row lg:gap-0 lg:text-sm">
 					{
 						Object.entries(configs.navigation).map(([nav, link]) => {
+              if (nav === 'Privacy policy') return;
 							const isCurrPage = isActiveLink({ link, pathname })
 							return (
 								<li class="text-right transition duration-500 lg:text-left">

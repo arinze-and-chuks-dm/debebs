@@ -2,6 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Quicksand";
+  src: url("../fonts/Quicksand-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 300;
+  src: url("../fonts/Quicksand-Light.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 500;
+  src: url("../fonts/Quicksand-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 600;
+  src: url("../fonts/Quicksand-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 700;
+  src: url("../fonts/Quicksand-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Marcellus";
+  src: url("../fonts/Marcellus-Regular.ttf");
+}
+
 body {
   @apply font-primary tracking-wide text-lg;
 }

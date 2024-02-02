@@ -1,7 +1,7 @@
 {
   "title": "itsashade",
   "description": "Dallas based photographer",
-  "domain": "https://itsashade.com",
+  "domain": "https://debebsmedia.com",
   "socials": {
     "instagram": "",
     "facebook": "",
@@ -10,7 +10,8 @@
   "navigation": {
     "Home": "/",
     "Contact us": "/contact-us",
-    "About us": "/about-us"
+    "About us": "/about-us",
+    "Privacy policy": "/privacy-policy"
   },
   "contact": {
     "email": "issashade4ever@gmail.com",
