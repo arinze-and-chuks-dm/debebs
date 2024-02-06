@@ -1,6 +1,5 @@
 ---
 title: "Privacy policy"
-description: ""
 pubDate: "Jul 08 2022"
 cover:
   {

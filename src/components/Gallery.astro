@@ -3,7 +3,6 @@
 import { navigation } from '@configs/site.json'
 import maternity from '@images/maternity-1.jpeg'
 import model1 from '@images/model-1.jpeg'
-import work7 from '@images/work7.webp'
 import familyPotrait2 from '@images/family-potrait-2.jpeg'
 import { Image } from 'astro:assets'
 import ButtonLink from './ButtonLink.astro'
@@ -61,7 +60,7 @@ const portfolio = [
                     <div class='absolute bottom-0 p-5 w-full flex justify-between items-top z-20 bg-black invisible group-hover:visible group-hover:animate-fade-up bg-opacity-50'>
                         <span>{pos} / {item.title}</span>
                     </div>
-                    <Image class:list={['transition-all duration-500 group-hover:scale-125 object-cover h-full', item?.className]} src={item.image.src} alt={item.image.alt} /> 
+                    <Image class:list={['transition-all duration-500 group-hover:scale-125 object-cover h-full']} src={item.image.src} alt={item.image.alt} /> 
                 </div>
             </li>
        })} 
