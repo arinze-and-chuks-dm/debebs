@@ -14,6 +14,8 @@ collections:
   - name: 'blog' # Used in routes, e.g., /admin/collections/blog
     label: 'Blog' # Used in the UI
     folder: 'src/content/blog' # The path to the folder where the documents are stored
+    format: frontmatter
+    preview_path: blog/{{slug}}
     create: true # Allow users to create new documents in this collection
     fields: # The fields for each document, usually in frontmatter
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'blog' }
