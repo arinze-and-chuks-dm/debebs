@@ -12,7 +12,7 @@ public_folder: 'src/assets/images' # The src attribute for uploaded media
 
 collections:
   - name: 'blog' # Used in routes, e.g., /admin/collections/blog
-    label: 'Blog' # Used in the UI
+    label: 'Blogs' # Used in the UI
     folder: 'src/content/blog' # The path to the folder where the documents are stored
     format: frontmatter
     preview_path: blog/{{slug}}
@@ -23,6 +23,7 @@ collections:
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Publish Date', name: 'publish date', widget: 'datetime' }
       - { label: 'Updated Date', name: 'updated date', widget: 'datetime' }
+      - { name: body, label: Body, widget: markdown }
       - label: 'Cover'
         name: 'cover'
         widget: 'object'
