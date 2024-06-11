@@ -9,7 +9,6 @@ const blog = defineCollection({
       // Transform string to Date object
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      draft: z.boolean().optional(),
       cover: z.object({
         img: image().refine((img) => img.width >= 600, {
           message: 'Image must be at least 600px wide',

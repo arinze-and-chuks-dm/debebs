@@ -21,7 +21,6 @@ collections:
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Publish Date', name: 'publish date', widget: 'datetime' }
       - { label: 'Updated Date', name: 'updated date', widget: 'datetime' }
-      - { label: 'Draft', name: 'draft', widget: 'boolean', default: false }
       - label: 'Cover'
         name: 'cover'
         widget: 'object'
