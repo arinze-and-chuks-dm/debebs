@@ -1,11 +1,11 @@
 ---
-title: "A Guide to Crafting the Perfect Modeling Portfolio"
-description: "Lorem ipsum dolor sit amet"
-pubDate: "Jul 08 2022"
+title: 'Post three'
+description: 'Lorem ipsum dolor sit amet'
+pubDate: 'Jul 08 2022'
 cover:
   {
-    img: "../../assets/images/dallas-photographer-professional.jpeg",
-    alt: "Placeholder image",
+    img: '../../assets/images/dallas-photographer-professional.jpeg',
+    alt: 'Placeholder image',
   }
 ---
 
