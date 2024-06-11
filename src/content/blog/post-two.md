@@ -4,7 +4,7 @@ description: "Welcome to the world of modeling, where every frame tells a story 
 pubDate: 'Jul 08 2022'
 cover:
   {
-    img: '../../assets/images/dallas-photographer-professional.jpeg',
+    img: 'src/assets/images/dallas-photographer-professional.jpeg',
     alt: 'Placeholder image',
   }
 ---

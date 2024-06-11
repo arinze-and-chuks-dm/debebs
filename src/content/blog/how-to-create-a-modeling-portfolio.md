@@ -4,7 +4,7 @@ description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 08 2022'
 cover:
   {
-    img: '../../assets/images/dallas-photographer-professional.jpeg',
+    img: 'src/assets/images/dallas-photographer-professional.jpeg',
     alt: 'Placeholder image',
   }
 ---
