@@ -5,9 +5,11 @@ import { defineConfig } from 'astro/config';
 
 import tailwind from '@astrojs/tailwind';
 
+const domain = 'https://debebsmedia.com';
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://debebsmedia.com',
+  site: domain,
   integrations: [
     mdx(),
     sitemap({
