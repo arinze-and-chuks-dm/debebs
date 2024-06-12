@@ -18,11 +18,10 @@ collections:
     preview_path: /{{slug}}
     create: true # Allow users to create new documents in this collection
     fields: # The fields for each document, usually in frontmatter
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'blog' }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Publish Date', name: 'publish date', widget: 'datetime' }
-      - { label: 'Updated Date', name: 'updated date', widget: 'datetime' }
+      - { label: 'Publish Date', name: 'pubDate', widget: 'datetime' }
+      - { label: 'Updated Date', name: 'updatedDate', widget: 'datetime' }
       - { name: body, label: Body, widget: markdown }
       - label: 'Cover'
         name: 'cover'
@@ -30,5 +29,5 @@ collections:
         collapsed: true
         fields:
           - { label: 'Image', name: 'image', widget: 'image' }
-          - { label: 'Alt', name: 'alt', widget: 'string' }
+          - { label: 'Alt Text', name: 'alt text', widget: 'string' }
 # https://github.dev/gxanshu/astro-decap-cms-starter

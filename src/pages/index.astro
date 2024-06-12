@@ -5,7 +5,7 @@ import ButtonLink from '@components/ButtonLink.astro'
 import Gallery from '@components/Gallery.astro'
 import WhyChooseUs from '@components/WhyChooseUs.astro'
 import Testimonials from '@components/Testimonials.astro'
-import { navigation } from '@configs/site.json'
+import { navigation, title } from '@configs/site.json'
 import familyPotrait from '@images/family-potrait.jpeg'
 import Banner from '@layouts/Banner.astro'
 import { Image, getImage } from 'astro:assets'
@@ -20,12 +20,12 @@ import _fasTwo from '@images/fas-two.jpeg'
 const fasTwo = await getImage({ src: _fasTwo })
 ---
 
-<Banner title='A family photographer in Dallas | Trusted Photographer in Texas' description="itsashade is a family photographer in Dallas focused on providing excellent service and capturing memories that will last a lifetime...">
+<Banner title='A family photographer in Dallas | Trusted Photographer in Texas' description={`${title} is a family photographer in Dallas focused on providing excellent service and capturing memories that will last a lifetime...`}>
     <div slot="banner-content" class={`animate-fade-right relative bg-no-repeat backdrop-brightness-50  bg-cover h-full flex flex-col justify-center`}>
 		<Image src={familyPotrait} alt="family potrait" class='absolute object-top object-cover h-full w-full -z-10 brightness-50' />
 		<div  class="mx-auto max-w-5xl px-8 sm:px-12 xl:px-16">
 			<div class=" text-white space-y-5 md:space-y-10">
-				<h1 class="text-sm"><span class=" italic">itsashade</span>: award-winning Dallas Family Photographer</h1>
+				<h1 class="text-sm"><span class=" italic">{title}</span>: award-winning Dallas Family Photographer</h1>
 				<p class="text-3xl lg:text-7xl font-semibold font-secondary">Your next <span class="italic underline underline-offset-4" id="adj" set:text="family" /><br /> photographer</p>
 				<p class="italic text-sm md:text-2xl">
 					Your all-in-one photography and videography solution in Dallas, Texas!

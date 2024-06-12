@@ -1,6 +1,6 @@
 ---
 import ButtonLink from "@components/ButtonLink.astro"
-import { navigation } from '@configs/site.json'
+import { navigation, title } from '@configs/site.json'
 import edwinaDebs from "@images/dallas-photographer-edwina-debebs.jpeg"
 import Base from "@layouts/Base.astro"
 import { Image } from "astro:assets"
@@ -12,7 +12,7 @@ type Props = CollectionEntry<'aboutUs'>;
 const { Content } = await entry.render();
 ---
 
-<Base title='About Us' description='About itsashade'>
+<Base title='About Us' description={`About ${title}`}`>
     <section class="max-w-5xl my-20 mx-auto grid grid-cols-2 items-center place-items-center">
         <Image class=" w-96" src={edwinaDebs} alt="Dallas Photographer Edwina Debebs"/>
         <div class='content'>

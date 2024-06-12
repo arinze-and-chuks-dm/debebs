@@ -1,8 +1,7 @@
 ---
-import { contact } from '@configs/site.json'
+import { contact, domain, title } from '@configs/site.json'
 
 const services = ['Family Photos', 'Maternity Photos', 'Professional Photos']
-
 
 const today = new Date()
 const tommorow = today.toISOString().split('T')[0]
@@ -13,10 +12,10 @@ const inSixMonths = new Date(today.setMonth(today.getMonth() + 6)).toISOString()
 
 <form  method="POST" action={`https://formsubmit.co/${contact.email}`}>
   <input type="text" name="_honey" class="hidden">
-  <input type="hidden" name="_autoresponse" value="Thank you for contacting itsashade! We will be in touch with you shortly.">
+  <input type="hidden" name="_autoresponse" value={`Thank you for contacting ${title}! We will be in touch with you shortly.`}>
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_next" value={`${Astro.url.origin}/thank-you`}>
-  <input type="hidden" name="_subject" value="Contact itsashade.com">
+  <input type="hidden" name="_subject" value={`Contact ${domain}`}>
   <div class="grid gap-3 grid-cols-6">
     <h5 class=" col-span-full text-center">Let's get in touch</h5>
     <div class="col-span-3">

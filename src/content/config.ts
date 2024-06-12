@@ -10,10 +10,10 @@ const blog = defineCollection({
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       cover: z.object({
-        img: image().refine((img) => img.width >= 600, {
+        image: image().refine((img) => img.width >= 600, {
           message: 'Image must be at least 600px wide',
         }),
-        alt: z.string(),
+        altText: z.string(),
       }),
     }),
 });

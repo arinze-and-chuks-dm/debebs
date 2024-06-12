@@ -1,11 +1,12 @@
 ---
 import HoneyBookForm from "@components/HoneyBookForm.astro"
+import { title } from "@configs/site.json"
 import Base from "@layouts/Base.astro"
 ---
 
 
 
 
-<Base title='Contact Us' description='Contact itsashade'>
+<Base title='Contact Us' description={`Contact ${title}`}`>
    <HoneyBookForm />
 </Base>

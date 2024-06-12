@@ -12,10 +12,13 @@ type Props = {
 const { title, description, canonical = Astro.url.href, image = '/src/assets/images/dallas-photographer-edwina-debebs.jpeg', noindex } = Astro.props;
 ---
 
+
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
@@ -50,3 +53,15 @@ const { title, description, canonical = Astro.url.href, image = '/src/assets/ima
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DJQYK9WRF1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  // @ts-ignore
+  gtag('js', new Date());
+
+  // @ts-ignore
+  gtag('config', 'G-DJQYK9WRF1');
+</script>

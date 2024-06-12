@@ -20,7 +20,7 @@ const { title, description, pubDate, updatedDate, cover } = Astro.props;
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} image={cover.img.src}   description={description} />
+		<BaseHead title={title} image={cover.image.src}   description={description} />
 	</head>
 	<body class="space-y-20">
 		<Header />
@@ -29,7 +29,7 @@ const { title, description, pubDate, updatedDate, cover } = Astro.props;
 				<article class="col-span-4 px-10 space-y-10 bg-white">
 					<h1 class="font-bold" set:html={title} />
 					<FormattedDate date={updatedDate ?? pubDate} />
-					<Image src={cover.img} alt={cover.alt} class="w-full" />
+					<Image src={cover.image} alt={cover.altText} class="w-full" />
 					<div class="content">
 						<slot />
 					</div>

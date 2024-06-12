@@ -1,10 +1,10 @@
 ---
-title: "Privacy policy"
-pubDate: "Jul 08 2022"
+title: 'Privacy policy'
+pubDate: 'Jul 08 2022'
 cover:
   {
-    img: "../../assets/images/dallas-photographer-professional.jpeg",
-    alt: "Placeholder image",
+    image: '../../assets/images/dallas-photographer-professional.jpeg',
+    altText: 'Placeholder image',
   }
 ---
 
