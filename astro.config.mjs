@@ -7,7 +7,6 @@ import tailwind from '@astrojs/tailwind';
 
 const domain = 'https://debebsmedia.com';
 
-// https://astro.build/config
 export default defineConfig({
   site: domain,
   integrations: [

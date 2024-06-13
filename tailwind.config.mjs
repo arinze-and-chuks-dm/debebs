@@ -10,9 +10,6 @@ module.exports = {
       listStyleType: {
         square: 'square',
       },
-      // height: {
-      //   screen: ['100vh', '100dvh'],
-      // },
     },
   },
   plugins: [
