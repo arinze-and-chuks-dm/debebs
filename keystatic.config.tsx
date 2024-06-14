@@ -17,11 +17,17 @@ import ComponentBlocks from '@components/KeystaticComponents/ComponentBlocks'
 
 export default config({
   // works in local mode in dev, then cloud mode in prod
-  storage: import.meta.env.DEV === true ? { kind: 'local' } : { kind: 'cloud' },
+  storage: {
+    kind: 'github',
+    repo: {
+      owner: 'arinze-and-chuks-dm',
+      name: 'debebs',
+    },
+  },
   // cloud deployment is free to sign up (up to 3 users per team)
   // docs: https://keystatic.com/docs/cloud
   // create a Keystatic Cloud account here: https://keystatic.cloud/
-  cloud: { project: 'arinze-chuks-dm/debebs' },
+  // cloud: { project: 'arinze-chuks-dm/debebs' },
   ui: {
     brand: { name: 'Debebs Media' },
   },
