@@ -88,11 +88,10 @@ export default config({
           fields.select({
             label: 'Category',
             options: [
-              { label: 'Gift Guides', value: 'hair-health' },
-              { label: 'Hair Products', value: 'product-reviews' },
-              { label: 'styling', value: 'styling' },
+              { label: 'Photography', value: 'photography' },
+              { label: 'Videography', value: 'videography' },
             ],
-            defaultValue: 'hair-health',
+            defaultValue: 'photography',
           }),
           {
             label: 'Categories',

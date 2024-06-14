@@ -6,7 +6,7 @@ const blogCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      description: z.string().max(300),
+      description: z.string(),
       // reference the authors collection https://docs.astro.build/en/guides/content-collections/#defining-collection-references
       authors: z.array(reference('authors')),
       // Transform string to Date object
