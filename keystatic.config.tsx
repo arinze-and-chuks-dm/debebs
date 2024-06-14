@@ -23,6 +23,7 @@ export default config({
       owner: 'arinze-and-chuks-dm',
       name: 'debebs',
     },
+    branchPrefix: 'keystatic-cms/',
   },
   // cloud deployment is free to sign up (up to 3 users per team)
   // docs: https://keystatic.com/docs/cloud
