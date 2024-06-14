@@ -1,0 +1,29 @@
+---
+// data
+import { type navLinkItem } from "@config/navData.json";
+
+interface Props {
+  navItem: navLinkItem;
+  class?: string;
+}
+
+const { navItem, class: className } = Astro.props as Props;
+const { text, link, newTab = false } = navItem;
+---
+
+<li>
+  <a
+    class:list={[
+      `primary-focus text-light relative block w-full rounded-sm px-4 py-4 transition duration-300 hover:text-primary-500 lg:px-6 lg:py-2 lg:text-sm ${className}`,
+      {
+        // styling for current active page link
+        "bg-primary-200": Astro.url.pathname === link,
+      },
+    ]}
+    href={link}
+    target={newTab ? "_blank" : ""}
+    rel={newTab ? "noopener noreferrer" : ""}
+  >
+    {text}
+  </a>
+</li>

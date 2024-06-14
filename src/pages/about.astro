@@ -1,0 +1,42 @@
+---
+import { getEntry } from "astro:content";
+
+// layout
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+// components
+import Newsletter from "@components/Cta/NewsletterLarge.astro";
+import ExternalLink from "@components/MarkdownComponents/ExternalLink.astro";
+import RecentPostsCard from "@components/SidebarCards/RecentPostsCard.astro";
+
+// data
+import CtaButton from "@components/Cta/CtaButton.astro";
+import siteData from "@config/siteData.json";
+
+const author = await getEntry("authors", siteData.author.slug);
+
+if (!author) {
+  throw new Error("Author not found in src/pages/about.astro");
+}
+
+const { Content } = await author.render();
+---
+
+<BaseLayout title={siteData.title} description={siteData.description}>
+  <div class="site-container pb-10 pt-24 md:pt-36">
+    <div class="grid gap-10 md:grid-cols-8 lg:grid-cols-11">
+      <div class="col-span-8" data-pagefind-body>
+        <h1 class="h1 text-center">About Me</h1>
+        <section class="prose mt-8 max-w-none">
+          <Content components={{ a: ExternalLink }} />
+        </section>
+        <CtaButton class="mt-5" />
+      </div>
+      <div class="hidden flex-col gap-10 lg:col-span-3 lg:flex">
+        <!-- <AboutCard /> -->
+        <RecentPostsCard />
+      </div>
+    </div>
+  </div>
+  <Newsletter />
+</BaseLayout>

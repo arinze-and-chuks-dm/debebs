@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+
+// components
+import Button from "@components/Button/Button.astro";
+
+interface Props {
+  image: string;
+  description: string;
+  linkText: string;
+  linkUrl: string;
+}
+
+const { image, description, linkText, linkUrl } = Astro.props as Props;
+
+/**
+ * * Build the image path needed for dynamic image importing
+ * image is a string that looks like : "../tailwind-gradient-underline/ace.jpg"
+ * we need to convert it to a string that looks like: "/src/content/blog/tailwind-gradient-underline/ace.jpg"
+ */
+// remove beginning "../" from image path
+const imageSubPath = image.slice(3);
+
+// append start of full path
+const imageFullPath = "/src/content/blog/" + imageSubPath;
+
+/**
+ * * Relevant docs:
+ * general dynamic import notes for Astro: https://docs.astro.build/en/recipes/dynamically-importing-images/
+ * vite glob import: https://vitejs.dev/guide/features.html#glob-import
+ * glob patterns: https://github.com/mrmlnc/fast-glob?tab=readme-ov-file#pattern-syntax
+ */
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/blog/**/*.{jpeg,jpg,png,gif}",
+);
+
+if (!images[imageFullPath])
+  throw new Error(
+    `"${imageFullPath}" does not exist in glob: "/src/content/blog/**/*.{jpeg,jpg,png,gif}". See AffiliateLink.astro to debug.`,
+  );
+---
+
+<div
+  class="not-prose mx-auto my-6 flex max-w-[400px] flex-col gap-8 rounded-sm border-2 border-accent p-4 text-center sm:p-8"
+>
+  <Image
+    src={images[imageFullPath]()}
+    alt={linkText}
+    width={400}
+    quality="high"
+    class="h-auto w-full rounded-sm object-cover"
+    loading="lazy"
+    format="webp"
+  />
+  <div class="flex flex-col">
+    <p>{description}</p>
+    <div class="mt-6 flex justify-center">
+      <Button
+        variant="primary"
+        class="flex"
+        href={linkUrl}
+        target="_blank"
+        rel="sponsored nofollow">{linkText}</Button
+      >
+    </div>
+  </div>
+</div>

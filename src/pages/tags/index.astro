@@ -1,0 +1,20 @@
+---
+// layout
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+// components
+import TagCloud from "@components/TagCloud/TagCloud.astro";
+---
+
+<BaseLayout
+  title="Recent Blog Posts"
+  description="Recent Blog Posts Description"
+>
+  <div class="mx-auto max-w-3xl pt-24 md:pt-36">
+    <h1 class="h1 text-center">Tags</h1>
+    <!-- display tags -->
+    <div class="mt-10 flex justify-center">
+      <TagCloud showCount={true} />
+    </div>
+  </div>
+</BaseLayout>

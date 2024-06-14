@@ -1,0 +1,17 @@
+---
+import Button from "@components/Button/Button.astro"
+import { NAV_LINKS } from "@config/navData.json"
+
+type Props = {
+  class?: string;
+  text?: string;
+};
+
+const { class: className = "", text = "Book Now!" } = Astro.props as Props;
+---
+
+<Button
+  href={NAV_LINKS.contact.link}
+  variant="primary"
+  class:list={[className, "md:w-fit"]}>{text}</Button
+>

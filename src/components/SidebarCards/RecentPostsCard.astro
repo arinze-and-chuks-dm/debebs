@@ -1,0 +1,29 @@
+---
+// components
+import BaseCard from "@components/SidebarCards/BaseCard.astro";
+import PostCard from "@components/PostCard/PostCardHorizontalSimple.astro";
+
+// utils
+import { getAllPosts, formatPosts } from "@js/blogUtils";
+
+interface Props {
+  class?: string; // classes for the form
+  rest?: any; // catch-all for any additional parameters, such as "aria-label"
+}
+
+const { class: className, ...rest } = Astro.props as Props;
+
+const posts = await getAllPosts();
+const recentPosts = formatPosts(posts, { limit: 3 });
+---
+
+<BaseCard class={className} {...rest}>
+  <h3 class="text-light font-sans text-sm uppercase">Recent Posts</h3>
+  <div class="mt-6 flex flex-col gap-8">
+    {
+      recentPosts.map((post, idx) => (
+        <PostCard post={post} showDescription={false} />
+      ))
+    }
+  </div>
+</BaseCard>

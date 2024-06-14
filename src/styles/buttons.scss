@@ -1,0 +1,31 @@
+/* buttons, 4 types "filled", "outline", "ghost", "arrow" */
+.button {
+  @apply flex items-center justify-center rounded-sm px-6 py-3 uppercase transition-colors duration-300;
+  @apply focus:outline-none focus:ring-offset-base-200;
+  @apply disabled:pointer-events-none;
+}
+
+.button--primary {
+  @apply bg-primary-300;
+  @apply hover:bg-primary-200;
+  @apply focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-0;
+}
+
+// secondary and outline are the same in this case
+.button--secondary {
+  @apply border border-primary-300 transition;
+  @apply hover:bg-primary-300;
+  @apply focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-0;
+}
+
+.button--outline {
+  @apply border border-primary-300 transition;
+  @apply hover:bg-primary-300;
+  @apply focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-0;
+}
+
+.button--ghost {
+  @apply text-primary-700 no-underline;
+  @apply hover:bg-primary-100 hover:text-primary-900;
+  @apply focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-0;
+}

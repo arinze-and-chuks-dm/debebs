@@ -1,52 +1,117 @@
-# Astro Starter Kit: Blog
+# Welcome to Dawnlight!
 
-```sh
-npm create astro@latest -- --template blog
+To get started, first install all necessary packages:
+
+```bash
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+Then build the site once (generates starting search results)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```bash
+npm run build
+```
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+Copy the Pagefind build (for site search) to be available for the dev environment. This varies depending on your OS. I've created a few NPM commands to help.
 
-Features:
+- For Windows, run `npm run winsearch`
+- For OSX or Linux, run `npm run osxsearch`
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+Finally, start the dev server:
 
-## 🚀 Project Structure
+```bash
+npm run dev
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+## Code Intro
 
-```text
+I have created a few code tours to introduce you to the codebase. You will need the extension [Code Tour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) to view them in VSCode.
+
+The source files have the following setup. Note that not all files are included - it is already long, no one wants it to be longer.
+
+```
+.
+├── .tours/
+│   └── code-intro.tour
+├── .vscode/
+│   └── extensions.json
 ├── public/
+│   ├── favicons/
+│   │   └── favicon.ico
+│   ├── images/
+│   └── robots.txt
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
+│   ├── assets/
+│   │   └── images/
+│   │       └── hero.jpg
+│   ├── components/
+│   │   ├── Hero/
+│   │   │   ├── HeroBgImage.astro
+│   │   │   ├── HeroSideImage.astro
+│   │   │   └── HeroCentered.astro
+│   │   └── Footer/
+│   │       └── Footer.astro
+│   ├── config/
+│   │   └── navData.json.ts
+│   ├── content/
+│   │   ├── authors/
+│   │   ├── blog/
+│   │   ├── otherPages/
+│   │   └── config.ts
+│   ├── js/
+│   │   └── utils.ts
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── blog/
+│   │   │   ├── [...page].astro
+│   │   │   └── [...slug].astro
+│   │   ├── categories/
+│   │   │   ├── [category]/
+│   │   │   │   └── [...page].astro
+│   │   │   └── index.astro
+│   │   ├── tags/
+│   │   │   ├── [tag]/
+│   │   │   │   └── [...page].astro
+│   │   │   └── index.astro
+│   │   ├── [page].astro
+│   │   ├── 404.astro
+│   │   ├── contact.astro
+│   │   ├── index.astro
+│   │   └── rss.xml.ts
+│   └── styles/
+│       └── global.scss
+├── .gitignore
+├── .prettierrc.mjs
 ├── astro.config.mjs
-├── README.md
+├── keystatic.config.tsx
+├── netlify.toml
 ├── package.json
+├── package-lock.json
+├── README.md
+├── tailwind.config.cjs
 └── tsconfig.json
 ```
+
+For robots like Google to see the correct sitemap, you will want to edit the `public/robots.txt` file to use your website domain.
+
+## Other Resources
+
+- See my [blog post](https://cosmicthemes.com/blog/astro-web-development-setup/) for recommended VSCode extensions.
+- You can learn more information from the [theme docs](https://cosmicthemes.com/docs/) page on the [Cosmic Themes Website](https://cosmicthemes.com/).
+- For support, see the [support page](https://cosmicthemes.com/support/).
+- [License details](https://cosmicthemes.com/license/)
+
+## General Astro Info
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+Any static assets, like images, can be placed in the `public/` directory. I also frequently use `src/assets` for images when using Astro asssets for image optimization.
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
+### 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -59,10 +124,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+### 👀 Want to learn more?
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Feel free to check out the [Astro documentation](https://docs.astro.build).

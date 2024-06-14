@@ -1,0 +1,48 @@
+---
+/**
+ * * Sidebar card for the site author
+ * Make sure to update the siteData.json file with the appropriate author slug!
+ */
+import { Image } from "astro:assets"
+import { getEntry } from "astro:content"
+
+// components
+import BaseCard from "@components/SidebarCards/BaseCard.astro"
+
+interface Props {
+  class?: string; // classes for the form
+  rest?: any; // catch-all for any additional parameters, such as "aria-label"
+}
+
+// data
+import Button from "@components/Button/Button.astro"
+import CtaButton from "@components/Cta/CtaButton.astro"
+import { NAV_LINKS } from "@config/navData.json"
+import siteData from "@config/siteData.json"
+
+const { class: className, ...rest } = Astro.props as Props;
+
+const author = await getEntry("authors", siteData.author.slug);
+---
+
+{
+  author && (
+    <BaseCard class={className} {...rest}>
+      <div class="aspect-square overflow-hidden rounded-full">
+        <Image
+          src={author.data.avatar}
+          class="max-w-full"
+          alt="hero"
+          loading="eager"
+          width={600}
+        />
+      </div>
+      <h3 class="font-handwriting text-5xl">Hi, I'm {author.data.name}</h3>
+      <p class="text-pretty">{author.data.about}</p>
+      <Button arrow="right" href={NAV_LINKS.about.link} variant="ghost">
+        Hear the full story
+      </Button>
+      <CtaButton class="md:w-full" text="Let's chat" />
+    </BaseCard>
+  )
+}

@@ -1,29 +1,53 @@
 {
   "name": "debebs",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
+    "winsearch": "robocopy dist/pagefind public/pagefind /E",
+    "osxsearch": "cp -r dist/pagefind public/",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.0",
-    "@astrojs/mdx": "^1.1.3",
-    "@astrojs/partytown": "^2.1.1",
-    "@astrojs/rss": "^3.0.0",
-    "@astrojs/sitemap": "^3.0.3",
-    "@astrojs/tailwind": "^5.0.2",
-    "astro": "^3.4.2",
-    "sharp": "^0.32.6",
-    "tailwindcss": "^3.0.24",
-    "tailwindcss-animated": "^1.0.1",
-    "typescript": "^5.2.2"
+    "@astrojs/mdx": "^2.3.1",
+    "@astrojs/netlify": "^5.2.0",
+    "@astrojs/react": "^3.3.0",
+    "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.1.4",
+    "@astrojs/tailwind": "^5.1.0",
+    "@keystatic/astro": "^5.0.0",
+    "@keystatic/core": "^0.5.11",
+    "@pagefind/default-ui": "^1.1.0",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.12",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "animejs": "^3.2.2",
+    "astro": "^4.6.3",
+    "astro-auto-import": "^0.4.2",
+    "astro-icon": "^0.8.2",
+    "astro-seo": "^0.8.3",
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-to-string": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reading-time": "^1.5.0",
+    "sass": "^1.75.0",
+    "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.6",
-    "@tailwindcss/typography": "^0.5.10"
+    "@playform/compress": "0.0.3",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
+    "pagefind": "^1.1.0",
+    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "svgo": "2.8.0"
+  },
+  "overrides": {
+    "sharp": "^0.33.0"
   }
 }

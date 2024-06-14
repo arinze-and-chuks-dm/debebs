@@ -1,154 +1,60 @@
 ---
-import AboutMe from '@components/AboutMe.astro'
-import BlogFeed from '@components/BlogFeed.astro'
-import ButtonLink from '@components/ButtonLink.astro'
-import Gallery from '@components/Gallery.astro'
-import WhyChooseUs from '@components/WhyChooseUs.astro'
-import Testimonials from '@components/Testimonials.astro'
-import { navigation, title } from '@configs/site.json'
-import familyPotrait from '@images/family-potrait.jpeg'
-import Banner from '@layouts/Banner.astro'
-import { Image, getImage } from 'astro:assets'
-import BookNowBanner from '@components/BookNowBanner.astro'
-import VideoSection from '@components/VideoSection.astro'
-import Faq from '@components/Faq.astro'
-import fashionOne from '@images/fas.png'
-import famTwo from '@images/fam-two.jpeg'
-import famThree from '@images/fam-three.jpeg'
-import _fasTwo from '@images/fas-two.jpeg'
-// https://wiso.foxthemes.me/classic-landing-2/
-const fasTwo = await getImage({ src: _fasTwo })
+// layout
+import BaseLayout from "@layouts/BaseLayout.astro"
+
+// components
+import Button from "@components/Button/Button.astro"
+import Newsletter from "@components/Cta/NewsletterLarge.astro"
+import Hero from "@components/Hero/HeroSideImage.astro"
+import AboutCard from "@components/SidebarCards/AboutCard.astro"
+import TagsCard from "@components/SidebarCards/TagsCard.astro"
+
+// utils
+import { formatPosts, getAllPosts } from "@js/blogUtils"
+
+// data
+import Faq from "@components/Faq/Faq.astro"
+import PostCardVertical from "@components/PostCard/PostCardVertical.astro"
+import siteData from "@config/siteData.json"
+
+const posts = await getAllPosts();
+const recentPosts = formatPosts(posts, { limit: 5 });
 ---
 
-<Banner title='A family photographer in Dallas | Trusted Photographer in Texas' description={`${title} is a family photographer in Dallas focused on providing excellent service and capturing memories that will last a lifetime...`}>
-    <div slot="banner-content" class={`animate-fade-right relative bg-no-repeat backdrop-brightness-50  bg-cover h-full flex flex-col justify-center`}>
-		<Image src={familyPotrait} alt="family potrait" class='absolute object-top object-cover h-full w-full -z-10 brightness-50' />
-		<div  class="mx-auto max-w-5xl px-8 sm:px-12 xl:px-16">
-			<div class=" text-white space-y-5 md:space-y-10">
-				<h1 class="text-sm"><span class=" italic">{title}</span>: award-winning Dallas Family Photographer</h1>
-				<p class="text-3xl lg:text-7xl font-semibold font-secondary">Your next <span class="italic underline underline-offset-4" id="adj" set:text="family" /><br /> photographer</p>
-				<p class="italic text-sm md:text-2xl">
-					Your all-in-one photography and videography solution in Dallas, Texas!
-				</p>
-				<ButtonLink href={navigation['Contact us']} className=' border-white' text='Book Now' />
-			</div>
-		</div>	
-	</div>
-	<AboutMe />
-	<Gallery />
-	<section class=" px-8 sm:px-12 xl:px-16 mx-auto space-y-10">
-		<h2 class=" text-center text-gray-500">Professional photography services</h2>
-		<p class="text-center md:max-w-3xl font-extrabold font-secondary mx-auto lg:text-3xl">Capturing Moments, Creating Memories: Where Professional Photography Meets Timeless Elegance</p>
-		<div class="grid lg:grid-cols-2 gap-10">
-			<Image src={famThree} alt="family potrait" class='object-cover w-full -z-10' />
-			<div class="space-y-5 max-w-5xl">
-				<h2 class="text-2xl">
-					Everything from family portraits to professional headshots.
-				</h2>
-				<div class="space-y-5 text-gray-500 text-sm">
-					<p>
-            Our dedicated team specializes in various photography genres, from warm and intimate family portraits to polished and professional headshots.
-					</p>
-					<p>
-            We cater to clients who want to make a statement with their photos. Families wishing to give an elegant edge to their portraits or professionals who want to stand out.
-					</p>
-					<p>
-            Regardless of the special occasion, we are here to help you exquisitely capture those precious moments in life.
-					</p>
-				</div>
-				<h2 class=" text-2xl">
-					We offer a variety of packages to fit your needs and budget
-				</h2>
-				<div class=" space-y-5 text-gray-500 text-sm">
-					<p>
-            Whether you're looking for a quick photo shoot or an all-day event, we have the perfect package.
-					</p>
-					<p>
-            We take a bespoke approach to our photography services. Perhaps a family portrait in the comfort of your home or a maternity shoot at one of the numerous beautiful studios around Dallas.     
-					</p>
-					<p>
-						You won't find anyone else in Texas who can capture those special moments like us and in a manner that caters to your needs so perfectly!
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class=" bg-slate-100 gap-10 px-8 sm:px-12 xl:px-16">
-		<div class="grid lg:grid-cols-2 space-y-10 max-w-7xl py-28 mx-auto">
-			<div class="space-y-4">
-				<h2>Keep us in mind for your next photo shoot in the DFW area</h2>
-          <ol class="space-y-5 list-decimal text-gray-600">
-          <li>Scheule a call with us for a free consultation</li>
-        <li>
-            In our introductory call, we will take the time to get to know you: your style, personality, and vision for the photo shoot. 
-            We will also go over any special requests or requirements you may have.
-        </li>
-        <li >
-            After the initial consultation, we will work with you to create a customized package that fits your needs and budget.
-          </li>
-        <li>
-            If everything suits you, we will review the details for a final time and then schedule a date for the photo shoot.   
-          </li>
-          </ol>
-			</div>
-			<div class="mx-auto space-y-5">
-					<h3>Photography services</h3>
-				<p class="text-2xl font-extrabold font-secondary">Work with a photographer that does it all</p>
-					<ul class='ml-10 grid grid-cols-2 gap-x-10 list-image-[url("../../check.svg")] list-square [&>li]:pl-2 [&>li::marker]:text-5xl' role="list">
-						<li>Family potrait</li>
-						<li>Maternity shoots</li>
-						<li>Wedding photography</li>
-						<li>Professional potraits</li>
-						<li>Modeling photo shoots</li>
-						<li>Photo framing</li>
-					</ul>
-        <p>and more...</p>
-					<ButtonLink black href={navigation['Contact us']} text='Book Now' />
-			</div>
-		</div>
-	</section>
-	<Testimonials />
-  <WhyChooseUs />
-  <BookNowBanner />
-  <VideoSection />
-  <section class="space-y-10  px-8 sm:px-12 xl:px-16">
-    <h2 class="text-center text-gray-600">Photograph framing in Dallas, TX</h2>
-   <p class="font-extrabold text-3xl font-secondary text-center">The wonderful world of photography framing</p> 
-    <div class="grid lg:grid-cols-2 max-w-7xl mx-auto gap-10">
-      <div class="grid md:grid-cols-2 grid-rows-2 gap-1">
-        <Image src={famTwo} alt="Framed photographs on a wall" class='object-cover h-full w-full hidden md:block' />
-        <Image src={fashionOne} alt="Square framed photographs" class='object-cover w-full h-full row-span-2' />
-        <Image src={familyPotrait} alt="Wood photography frames" class='object-cover h-full w-full hidden md:block' />
-      </div> 
-      <div class="space-y-5">
-        <p class="font-extrabold font-secondary">
-In an increasingly digital world, we continue to discover the allure of tangible beauty through the timeless charm of framed photographs.
-        </p>
-        <p>
-We provide a wide range of photography frames designed to complement every moment captured with style and sophistication.
-          From sleek modern designs to timeless classics, our diverse collection ensures that your cherished memories find the perfect frame to showcase them. 
-        </p>
-        <p>
-Explore our selection and transform your photos into timeless works of art that tell a story and become a captivating focal point in any space. Every moment deserves a frame that does justice to its unique beauty.
-          </p>
-        <ButtonLink black href={navigation['Contact us']} text='Book Now' />
+<BaseLayout title={siteData.title} description={siteData.description}>
+  <Hero />
+  <div class="site-container mt-10 pb-10">
+    <!-- Recent blogs -->
+    <div class="md:mt-12">
+      <!-- <h2 class="h2 text-center">Recent Blog Posts</h2> -->
+      <div class="mt-8 grid gap-10 md:grid-cols-8 lg:grid-cols-11">
+        <div class="flex flex-col gap-10 md:col-span-8">
+          {
+            recentPosts.map((post, idx) => (
+              <PostCardVertical
+                post={post}
+                showDescription={true}
+                data-aos="fade-up"
+              />
+            ))
+          }
+          <!-- link to all posts -->
+          <div class="flex justify-center">
+            <Button variant="ghost" arrow="right" href="/blog/"
+              >All Posts</Button
+            >
+          </div>
+        </div>
+
+        <div class="hidden flex-col gap-10 lg:col-span-3 lg:flex">
+          <AboutCard />
+          <TagsCard />
+          <!-- <RecentPostsCard /> -->
+        </div>
       </div>
     </div>
-  </section>
-<section style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${fasTwo.src})`}} class="h-[80vh] bg-center px-10 flex flex-col justify-center m-auto text-center bg-no-repeat bg-cover text-white">
-    <div class="max-w-2xl mx-auto space-y-10">
-      <h2 class="text-2xl md:text-5xl">
-        Ever Wondered How Your Moments Would Look Framed?
-      </h2>
-      <p>
-        Discover the art of capturing memories with our photo frames.
-        We take your incredible photos and transform them into a work of art. 
-     </p>
-      <!-- <ButtonLink className="border-white mx-auto" href={navigation['Contact us']} text='Check out our frames' /> -->
-    </div>
-  </section>
-	<BlogFeed />
-  <BookNowBanner />
+  </div>
+  
   <Faq faqs={[
      {
     q: "Why should we invest in professional family portraits?",
@@ -195,16 +101,5 @@ Explore our selection and transform your photos into timeless works of art that 
     a: "Life happens, and we understand. We appreciate as much notice as possible for rescheduling, and we'll work with you to find a new suitable date.",
   },
   ]} />
-</Banner>
-
-<script>
-	const adjEl = document.getElementById('adj')
-	if (!adjEl) throw new Error('Element with id "adj" not found')
-	const adjs = ['wedding', 'maternity', 'professional', 'family', 'model', 'fashion', 'graduation', 'newborn', 'portrait', 'real estate']
-
-	setInterval(() => {
-		let adj = adjs[Math.floor(Math.random() * adjs.length)] as typeof adjs[number]
-		adjEl.innerText = adj
-	}, 1000)
-
-</script>
+  <Newsletter />
+</BaseLayout>

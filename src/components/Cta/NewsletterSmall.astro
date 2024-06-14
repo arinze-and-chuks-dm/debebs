@@ -1,0 +1,21 @@
+---
+// components
+import NewsletterForm from "@components/Forms/NewsletterForm.astro";
+---
+
+<section id="newsletter" class="my-12 bg-accent py-2">
+  <div class="border-y-2 border-base-50 bg-accent px-4 py-16 md:px-6">
+    <div class="mx-auto max-w-lg">
+      <h3 class="w-full text-center text-2xl font-light md:text-3xl">
+        Join our family
+      </h3>
+      <p class="description mt-6 text-pretty text-center text-sm md:text-base">
+        Join my newsletter and get updates on new articles, events, and more.
+      </p>
+      <NewsletterForm name="newsletter-cta" />
+      <p class="description mt-3 text-center text-xs">
+        I won't send you spam. Unsubscribe at any time.
+      </p>
+    </div>
+  </div>
+</section>

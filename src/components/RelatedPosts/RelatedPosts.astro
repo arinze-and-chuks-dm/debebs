@@ -1,0 +1,32 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+// components
+import PostCard from "@components/PostCard/PostCardVerticalSimple.astro";
+
+// utils
+import { arePostsRelated, getAllPosts } from "@js/blogUtils";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+
+const allPosts = await getAllPosts();
+
+// get 3 related posts
+const relatedPosts = allPosts
+  .filter((otherPost) => arePostsRelated(post, otherPost))
+  .slice(0, 3);
+---
+
+{
+  relatedPosts.length === 0
+    ? allPosts.map((post, idx) => (
+        <PostCard post={post} showDescription={false} />
+      ))
+    : relatedPosts.map((post, idx) => (
+        <PostCard post={post} showDescription={false} />
+      ))
+}

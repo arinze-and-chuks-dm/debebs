@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+
+// data
+import siteData from "@config/siteData.json";
+
+// images
+import logo from "@images/site-logo.png";
+---
+
+<a
+  class="primary-focus flex items-center align-middle"
+  href="/"
+  aria-label="Home"
+  class=""
+>
+  <!-- <Image
+    src={logo}
+    alt="Cosmic Themes logo"
+    loading="eager"
+    width={100}
+    height={100}
+    class="h-14 w-14"
+  /> -->
+  <div class="font-handwriting text-nowrap text-3xl">{siteData.name}</div>
+  <!-- <div class="text-sm">HOME</div> -->
+</a>

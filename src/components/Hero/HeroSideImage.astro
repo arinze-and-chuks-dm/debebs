@@ -1,0 +1,67 @@
+---
+/**
+ * * Hero section with left side text and right side image
+ */
+import { Image } from "astro:assets";
+
+// components
+
+// import heroImage from "@assets/images/business-strategy.png";
+import heroImage from "@assets/images/fam-three.jpeg";
+
+// data
+import CtaButton from "@components/Cta/CtaButton.astro";
+import siteData from "@config/siteData.json";
+const cityAndState = `${siteData.address.city}, ${
+  siteData.address.state.abbreviation
+}`;
+---
+
+<section id="hero" class="md:pb-22 flex min-h-[60svh] w-full bg-accent py-14">
+  <!-- hero items -->
+  <div
+    class="site-container mx-auto grid max-w-4xl items-center gap-10 pb-6 pt-12 md:grid-cols-5 md:gap-20 md:py-20"
+  >
+    <!-- Hero text -->
+    <div
+      class="row-start-2 gap-8 text-center md:col-span-3 md:row-start-1 md:text-left"
+    >
+      <h1
+        class="font-display-block text-nowrap font-handwriting text-5xl md:text-6xl lg:text-7xl"
+        data-aos="fade-up"
+        data-aos-trigger="#hero"
+      >
+        {siteData.name}
+      </h1>
+      <p
+        class="description mx-auto mt-6 max-w-md text-pretty md:max-w-none"
+        data-aos="fade-up"
+        data-aos-delay="0.2"
+        data-aos-trigger="#hero"
+      >
+        Our passion for photography is to beautifully capture your most
+        cherished moments at every stage of life here in {cityAndState}.
+      </p>
+      <CtaButton class="mt-5" text="Schedule a call today!" />
+      <!-- <NewsletterForm
+        name="hero-newsletter"
+        data-aos="fade-up"
+        data-aos-delay="0.8"
+        data-aos-trigger="#hero"
+      /> -->
+    </div>
+    <!-- hero image -->
+    <div
+      class="mx-auto aspect-square min-w-0 max-w-[260px] justify-center rounded-sm md:col-span-2 md:max-w-md md:justify-end"
+      data-aos="fade-in"
+    >
+      <Image
+        src={heroImage}
+        class="max-w-full rotate-6 rounded-md shadow-2xl"
+        alt="hero"
+        loading="eager"
+        width={600}
+      />
+    </div>
+  </div>
+</section>

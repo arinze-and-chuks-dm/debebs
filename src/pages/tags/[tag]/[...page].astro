@@ -1,0 +1,97 @@
+---
+import { type Page } from "astro";
+
+// main layout
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+// components
+import PostCard from "@components/PostCard/PostCardVertical.astro";
+import Pagination from "@components/Pagination/Pagination.astro";
+import PaginationSimple from "@components/Pagination/PaginationSimple.astro";
+import Newsletter from "@components/Cta/NewsletterLarge.astro";
+import AboutCard from "@components/SidebarCards/AboutCard.astro";
+import RecentPostsCard from "@components/SidebarCards/RecentPostsCard.astro";
+
+// utils
+import { getAllPosts, countItems } from "@js/blogUtils";
+import { tagify, slugify } from "@js/textUtils";
+
+// generate pagination for tag pages if there are a bunch of posts for a single tag
+export async function getStaticPaths({ paginate }) {
+  const posts = await getAllPosts();
+
+  // get all tags from the posts
+  const allTags = posts.map((post) => post.data.tags).flat();
+
+  // combine tags and count how many times they appear. these are "slugified"
+  const countedTags = countItems(allTags);
+
+  // pagination returns an array of objects with params and page size
+  return Object.entries(countedTags).flatMap(([tag, val]) => {
+    // get all posts that have the tag
+    const filteredPosts = posts.filter((post) => {
+      // make sure to slugify them for comparison
+      const slugifiedTags = post.data.tags.map((tag) => slugify(tag));
+      return slugifiedTags.includes(tag);
+    });
+
+    return paginate(filteredPosts, {
+      params: { tag: tag },
+      pageSize: 6,
+    });
+  });
+}
+
+const { page } = Astro.props as { page: Page };
+const { tag } = Astro.params as { tag: string };
+
+const formattedTag = tagify(tag);
+---
+
+<BaseLayout
+  title={`${formattedTag} - Blog posts`}
+  description={`A collection of blog posts about ${formattedTag}`}
+>
+  <div class="site-container pt-24 md:pt-36">
+    <h1 class="h1 text-center">
+      Blog posts tagged with <span class="main-text-gradient"
+        >{formattedTag.toLowerCase()}</span
+      >
+    </h1>
+    <div class="mt-8 grid gap-10 md:grid-cols-8 lg:grid-cols-11">
+      <div class="flex flex-col gap-10 md:col-span-8">
+        {
+          page.data.map((post) => (
+            <PostCard post={post} showDescription={true} data-aos="fade-up" />
+          ))
+        }
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center">
+          <Pagination
+            basePath={`/tags/${tag}/`}
+            prevUrl={page.url.prev}
+            currPage={page.currentPage}
+            nextUrl={page.url.next}
+            lastPage={page.lastPage}
+          />
+
+          <!-- <PaginationSimple
+            prevUrl={page.url.prev}
+            currPage={page.currentPage}
+            nextUrl={page.url.next}
+            lastPage={page.lastPage}
+          /> -->
+        </div>
+      </div>
+
+      <aside class="hidden lg:col-span-3 lg:block">
+        <div class="hidden flex-col gap-10 lg:col-span-4 lg:flex">
+          <AboutCard />
+          <!-- <RecentPostsCard /> -->
+        </div>
+      </aside>
+    </div>
+  </div>
+  <Newsletter />
+</BaseLayout>

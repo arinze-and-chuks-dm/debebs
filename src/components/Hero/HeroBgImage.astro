@@ -1,0 +1,83 @@
+---
+/**
+ * * This component is used to display a hero section with a background image
+ * Desktop image should be 4:1 aspect ratio and ideally 2160px tall
+ * Mobile image should be ideally 1536px tall
+ * You can center the content by setting the variable `centerContent` to `true`
+ */
+const centerContent = true;
+
+import { Image } from "astro:assets";
+
+// components
+import NewsletterForm from "@components/Forms/NewsletterForm.astro";
+
+// data
+import siteData from "@config/siteData.json";
+
+interface HeroProps {
+  desktopImage: ImageMetadata; // this should be 4:1 aspect ratio and at least 2160px tall
+  mobileImage?: ImageMetadata; // ideally this should be at least 1536px tall
+}
+
+// images
+import desktopImage from "@assets/images/dallas-photographer-family-potrait.jpeg";
+import mobileImage from "@assets/images/hero-bg-mobile.png";
+
+const heroData: HeroProps = {
+  desktopImage: desktopImage,
+  mobileImage: mobileImage,
+};
+---
+
+<section id="hero" class="pb-14 pt-[5.5rem] md:pb-24" data-aos="fade-in">
+  <div class="relative h-[32rem] w-full lg:h-[45rem]">
+    <div class="absolute -z-20 h-full w-full overflow-hidden">
+      <Image
+        src={heroData.desktopImage}
+        class=` ${heroData.mobileImage ? "hidden sm:block" : ""}`
+        alt="smiling family"
+        aria-hidden="true"
+        loading="eager"
+        densities={[1, 2, 3]}
+        height={720}
+      />
+      {
+        heroData.mobileImage && (
+          <Image
+            src={heroData.mobileImage}
+            class="h-auto min-h-full w-full object-cover sm:hidden"
+            alt="smiling family"
+            aria-hidden="true"
+            loading="eager"
+            densities={[1, 2, 3]}
+            height={512}
+          />
+        )
+      }
+    </div>
+    <div
+      class:list={[
+        "site-container flex h-full items-center",
+        centerContent && "justify-center text-center",
+      ]}
+    >
+      <!-- Hero text -->
+      <div class="max-w-xl rounded-sm bg-base-50/70 p-6">
+        <h1
+          class="font-display-block text-nowrap font-handwriting text-5xl md:text-6xl lg:text-7xl"
+        >
+          {siteData.name}
+        </h1>
+        <p
+          class="description mx-auto mt-6 max-w-none text-pretty text-sm md:text-base"
+        >
+          Our passion is to beautifully capture your most cherished moments at
+          every stage of life here in Dallas, TX.
+        </p>
+        <p class="mt-5">Sign up and join our growing family!</p>
+        <NewsletterForm name="hero-newsletter" />
+      </div>
+    </div>
+  </div>
+</section>

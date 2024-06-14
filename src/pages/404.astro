@@ -1,19 +1,22 @@
 ---
-import ButtonLink from "@components/ButtonLink.astro"
-import { navigation } from '@configs/site.json'
-import Base from "@layouts/Base.astro"
+// main layout
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+// components
+import Button from "@components/Button/Button.astro";
 ---
 
-
-<Base title="" description="" noindex>
-    <section class=" h-[70vh]">
-    <div class=" text-center h-full space-y-10 flex flex-col items-center justify-center">
-        <div class=" space-y-3">
-        <p>404</p> 
-        <h1>Page not found</h1>
-        <p>Sorry, we couldn’t find the page you’re looking for.</p>
-        </div>
-        <ButtonLink href={navigation.Home} text="Go Back Home" black />
+<BaseLayout title="404" description="Error 404 page not found." noindex={true}>
+  <section class="site-container pt-36 text-center md:pt-44">
+    <div class="mx-auto max-w-xl px-4 text-center">
+      <h1 class="h1">Page not found!</h1>
+      <p class="description mt-4">
+        Apologies, one of our links must have broken. Please try again or go
+        back to the homepage.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <Button variant="primary" href="/">Go to homepage</Button>
+      </div>
     </div>
-    </section>
-</Base>
+  </section>
+</BaseLayout>

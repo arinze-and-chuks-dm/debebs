@@ -1,0 +1,232 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+
+// main layout
+import BaseLayout from "./BaseLayout.astro";
+
+// components
+import Category from "@components/Category/Category.astro";
+import Tag from "@components/Tag/Tag.astro";
+import Button from "@components/Button/Button.astro";
+import ShareButtons from "@components/ShareButtons/ShareButtons.astro";
+import RelatedPosts from "@components/RelatedPosts/RelatedPosts.astro";
+import Newsletter from "@components/Cta/NewsletterLarge.astro";
+
+// utils
+import { formatDate } from "@js/textUtils";
+import { getAllAuthorsData } from "@js/blogUtils";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  headings?: import("astro").MarkdownHeading[];
+}
+
+const { post } = Astro.props as Props;
+const {
+  title,
+  description,
+  authors,
+  pubDate,
+  updatedDate,
+  heroImage,
+  categories,
+  tags,
+} = post.data;
+
+const authorsData = await getAllAuthorsData(authors);
+---
+
+<BaseLayout
+  type="blog"
+  title={title}
+  description={description}
+  heroImage={heroImage}
+  authorsData={authorsData}
+  postFrontmatter={post.data}
+>
+  <article class="site-container pt-24 md:pt-36">
+    <!-- Blog post info -->
+    <div class="mx-auto flex max-w-[800px] flex-col items-center">
+      <div class="flex w-full">
+        <div class="mx-auto text-center">
+          <!-- categories -->
+          <div class="flex items-center justify-center gap-3">
+            <div class="flex flex-wrap items-center">
+              {
+                categories.map((category, idx) => {
+                  {
+                    if (idx > 0) {
+                      return (
+                        <>
+                          <span class="description text-sm">,</span>
+                          <Category class="ml-2" category={category} />
+                        </>
+                      );
+                    }
+                  }
+                  return <Category category={category} />;
+                })
+              }
+            </div>
+          </div>
+
+          <!-- title -->
+          <h1 class="h1 mt-4">{title}</h1>
+
+          <div
+            class="mt-4 flex w-full justify-center gap-4 text-sm font-light md:text-base"
+          >
+            <!-- author info -->
+            {
+              authorsData.map((authorData) => (
+                <div class="mb-auto flex">
+                  <figure>
+                    <Image
+                      src={authorData.data.avatar}
+                      alt={`${authorData.data.name} avatar`}
+                      width={100}
+                      quality="high"
+                      class="h-7 w-7 rounded-full object-cover"
+                    />
+                  </figure>
+                  <div class="my-auto ml-2">
+                    <a
+                      class="opacity-80 transition hover:text-primary-700"
+                      href={authorData.data.authorLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {authorData.data.name}
+                    </a>
+                  </div>
+                </div>
+              ))
+            }
+
+            <!-- Date -->
+            <div class="flex items-center opacity-80">
+              <Icon name="tabler:calendar-event" class="mr-2 h-5 w-5" />
+              <time datetime={pubDate.toISOString()}
+                >{formatDate(pubDate)}
+              </time>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- blog post main image (vertical) -->
+      <!-- <div class="mt-6 aspect-[4/5] w-full overflow-hidden rounded-sm">
+        <div class="h-full">
+          <Image
+            src={heroImage}
+            alt={`Cover for ${title}`}
+            height={800}
+            densities={[1, 1.5, 2]}
+            quality="high"
+            class="h-full w-full object-cover"
+            loading="eager"
+            format="webp"
+            transition:name={`blog-image-${post.slug}`}
+          />
+        </div>
+      </div> -->
+
+      <!-- blog post main image (horizontal) -->
+      <div class="mt-6 aspect-video overflow-hidden rounded-sm">
+        <Image
+          src={heroImage}
+          alt={`Cover for ${title}`}
+          widths={[500, 740, 1200, 1600, heroImage.width]}
+          sizes={`(max-width: 400px) 370px, (max-width: 640px) 600px, 800px`}
+          quality="high"
+          class="rounded-sm object-cover"
+          loading="eager"
+          format="webp"
+          transition:name={`blog-image-${post.slug}`}
+        />
+      </div>
+    </div>
+
+    <!-- article content -->
+    <div class="mt-10 w-full">
+      <div class="mx-auto max-w-2xl">
+        <div class="text-base-content text-base">
+          {
+            updatedDate && (
+              <div class="mb-6 italic">
+                <time datetime={updatedDate.toISOString()}>
+                  Updated: {formatDate(updatedDate)}
+                </time>
+              </div>
+            )
+          }
+          <section id="blog-post-content" class="prose mx-auto max-w-none">
+            <slot />
+          </section>
+
+          <!-- Tags -->
+          <div class="mt-8 border-y-2 border-accent py-4 md:text-lg">
+            <div class="flex flex-wrap items-center text-sm">
+              <!-- <Icon name="tabler:tag" class="h-5 w-5" /> -->
+              <p class="mr-2">TAGGED:</p>
+              <!-- {tags.map((tag) => <Tag tag={tag} />)} -->
+              {
+                tags.map((tag, idx) => {
+                  {
+                    if (idx > 0) {
+                      return (
+                        <>
+                          <span class="description text-sm">,</span>
+                          <Tag class="ml-2" tag={tag} />
+                        </>
+                      );
+                    }
+                  }
+                  return <Tag tag={tag} />;
+                })
+              }
+            </div>
+          </div>
+
+          <!-- end of post, extra stuff (like share buttons) here -->
+          <!-- <hr class="border-accent my-4 w-full border-t-2" /> -->
+          <div class="mt-8 flex flex-col">
+            <h3 class="text-xl font-light">Share with your friends!</h3>
+            <!-- socials -->
+            <div class="mt-2 flex w-full flex-wrap justify-center gap-2">
+              <ShareButtons
+                title={title}
+                url={Astro.url}
+                link={true}
+                class="flex-auto"
+              />
+            </div>
+          </div>
+
+          <!-- button to go back to all posts -->
+          <div class="mt-8 flex">
+            <Button
+              variant="ghost"
+              href="/blog/"
+              arrow="left"
+              class="pl-0 md:text-lg"
+            >
+              Back to all posts
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+  <aside class="mx-auto mt-10 max-w-[44rem] px-4">
+    <div class="rounded-sm border-2 border-accent p-6">
+      <h3 class="text-center font-handwriting text-5xl">You'll also enjoy</h3>
+      <div class="mt-4 grid gap-6 xs:grid-cols-2 sm:grid-cols-3">
+        <RelatedPosts post={post} />
+      </div>
+    </div>
+  </aside>
+  <Newsletter />
+</BaseLayout>

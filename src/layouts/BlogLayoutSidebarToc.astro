@@ -1,0 +1,241 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+
+// for reading time estimate
+import { fromMarkdown } from "mdast-util-from-markdown";
+import { toString } from "mdast-util-to-string";
+import getReadingTime from "reading-time";
+
+// main layout
+import BaseLayout from "./BaseLayout.astro";
+
+// components
+import Category from "@components/Category/Category.astro";
+import Tag from "@components/Tag/Tag.astro";
+import Button from "@components/Button/Button.astro";
+import ShareButtons from "@components/ShareButtons/ShareButtons.astro";
+import RelatedPosts from "@components/RelatedPosts/RelatedPosts.astro";
+import Newsletter from "@components/Cta/NewsletterLarge.astro";
+import AboutCard from "@components/SidebarCards/AboutCard.astro";
+import RecentPostsCard from "@components/SidebarCards/RecentPostsCard.astro";
+import TableOfContentsCard from "@components/SidebarCards/TableOfContentsCard.astro";
+
+// utils
+import { formatDate } from "@js/textUtils";
+import { getAllAuthorsData } from "@js/blogUtils";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  headings: import("astro").MarkdownHeading[];
+}
+
+const { post, headings } = Astro.props as Props;
+const {
+  title,
+  description,
+  authors,
+  pubDate,
+  updatedDate,
+  heroImage,
+  categories,
+  tags,
+} = post.data;
+
+const authorsData = await getAllAuthorsData(authors);
+
+// get reading time estimate
+// replace all the "\n"s with spaces for proper reading time estimate
+const spacedMarkdown = post.body.replace(/\n/g, " ");
+const tree = fromMarkdown(spacedMarkdown);
+const markdownText = toString(tree);
+const readingTime = getReadingTime(markdownText);
+---
+
+<BaseLayout
+  type="blog"
+  title={title}
+  description={description}
+  heroImage={heroImage}
+  authorsData={authorsData}
+  postFrontmatter={post.data}
+>
+  <div
+    class="site-container grid gap-10 pt-24 md:pt-36 lg:grid-cols-12 lg:gap-20"
+  >
+    <div class="lg:col-span-8">
+      <article class="" data-pagefind-body>
+        <!-- Blog post info -->
+        <div class="mx-auto flex max-w-[800px] flex-col items-center">
+          <div class="flex w-full">
+            <div class="mr-auto max-w-2xl">
+              <div class="flex w-full gap-3 md:text-lg">
+                <div class="mt-3 flex w-full flex-wrap gap-2 text-sm">
+                  <!-- categories -->
+                  <div class="flex items-center gap-3">
+                    <div class="flex flex-wrap items-center">
+                      {
+                        categories.map((category, idx) => {
+                          {
+                            if (idx > 0) {
+                              return (
+                                <>
+                                  <span class="description text-sm">,</span>
+                                  <Category class="ml-2" category={category} />
+                                </>
+                              );
+                            }
+                          }
+                          return <Category category={category} />;
+                        })
+                      }
+                    </div>
+                  </div>
+
+                  <span>&bull;</span>
+
+                  <!-- published date -->
+                  <div class="description xl:text-sm">
+                    <div class="flex">
+                      <p class="whitespace-nowrap font-light uppercase">
+                        {formatDate(pubDate)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- title -->
+              <h1 class="h1 mt-4 font-medium">{title}</h1>
+
+              <!-- description -->
+              <!-- <p class="mt-3 text-sm opacity-70 md:text-base/5">
+            {description}
+          </p> -->
+            </div>
+          </div>
+
+          <!-- blog post main image (vertical) -->
+          <div class="mt-6 aspect-[4/5] w-full overflow-hidden rounded-sm">
+            <div class="h-full">
+              <Image
+                src={heroImage}
+                alt={`Cover for ${title}`}
+                height={800}
+                densities={[1, 1.5, 2]}
+                quality="high"
+                class="h-full w-full object-cover"
+                loading="eager"
+                format="webp"
+                transition:name={`blog-image-${post.slug}`}
+              />
+            </div>
+          </div>
+
+          <!-- blog post main image (horizontal) -->
+          <!-- <div class="mt-6 aspect-video overflow-hidden rounded-sm">
+            <Image
+              src={heroImage}
+              alt={`Cover for ${title}`}
+              widths={[500, 740, 1200, 1600, heroImage.width]}
+              sizes={`(max-width: 400px) 370px, (max-width: 640px) 600px, 800px`}
+              quality="high"
+              class="rounded-sm object-cover"
+              loading="eager"
+              format="webp"
+              transition:name={`blog-image-${post.slug}`}
+            />
+          </div> -->
+        </div>
+
+        <!-- article content -->
+        <div class="mt-10 w-full">
+          <div class="mx-auto max-w-[800px] gap-8 lg:max-w-none">
+            <div class="text-base-content text-base">
+              {
+                updatedDate && (
+                  <div class="mb-6 italic">
+                    <time datetime={updatedDate.toISOString()}>
+                      Updated: {formatDate(updatedDate)}
+                    </time>
+                  </div>
+                )
+              }
+              <section id="blog-post-content" class="prose max-w-none">
+                <slot />
+              </section>
+
+              <!-- Tags -->
+              <div class="mt-8 border-y-2 border-accent py-4 md:text-lg">
+                <div class="flex flex-wrap items-center text-sm">
+                  <!-- <Icon name="tabler:tag" class="h-5 w-5" /> -->
+                  <p class="mr-2">TAGGED:</p>
+                  <!-- {tags.map((tag) => <Tag tag={tag} />)} -->
+                  {
+                    tags.map((tag, idx) => {
+                      {
+                        if (idx > 0) {
+                          return (
+                            <>
+                              <span class="description text-sm">,</span>
+                              <Tag class="ml-2" tag={tag} />
+                            </>
+                          );
+                        }
+                      }
+                      return <Tag tag={tag} />;
+                    })
+                  }
+                </div>
+              </div>
+
+              <!-- end of post, extra stuff (like share buttons) here -->
+              <!-- <hr class="border-accent my-4 w-full border-t-2" /> -->
+              <div class="mt-8 flex flex-col">
+                <h3 class="text-xl font-light">Share with your friends!</h3>
+                <!-- socials -->
+                <div class="mt-2 flex w-full flex-wrap justify-center gap-2">
+                  <ShareButtons
+                    title={title}
+                    url={Astro.url}
+                    link={true}
+                    class="flex-auto"
+                  />
+                </div>
+              </div>
+
+              <!-- button to go back to all posts -->
+              <!-- <div class="mt-8 flex">
+                <Button
+                  variant="ghost"
+                  href="/blog/"
+                  arrow="left"
+                  class="pl-0 text-lg md:text-xl"
+                >
+                  Back to all posts
+                </Button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </article>
+      <aside class="mt-10 rounded-sm border-2 border-accent p-6">
+        <h3 class="text-center font-handwriting text-5xl">You'll also enjoy</h3>
+        <div class="mt-4 grid gap-6 xs:grid-cols-2 md:grid-cols-3">
+          <RelatedPosts post={post} />
+        </div>
+      </aside>
+    </div>
+    <aside class="hidden flex-col gap-10 lg:col-span-4 lg:flex">
+      <AboutCard />
+      <div class="sticky top-20">
+        <div class="h-[calc(100vh+10rem)] overflow-y-auto">
+          <TableOfContentsCard headings={headings} levels={3} />
+        </div>
+      </div>
+      <!-- <RecentPostsCard /> -->
+    </aside>
+  </div>
+  <Newsletter />
+</BaseLayout>

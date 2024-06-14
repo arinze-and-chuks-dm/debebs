@@ -1,0 +1,17 @@
+---
+import { slugify, tagify, humanize } from "@js/textUtils";
+
+interface Props {
+  tag: string;
+  class?: string;
+}
+
+const { tag, class: className } = Astro.props as Props;
+---
+
+<a
+  href={`/tags/${slugify(tag)}/`}
+  class={`inline-block uppercase font-light description hover:text-primary-500 ${className}`}
+>
+  {humanize(tag)}
+</a>

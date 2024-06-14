@@ -1,0 +1,106 @@
+---
+/**
+ * * Horizontal post cards
+ * Intended for images with an aspect ratio of 16/9
+ */
+import { type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+
+// components
+import Button from "@components/Button/Button.astro";
+import Category from "@components/Category/Category.astro";
+
+// utils
+import { formatDate, categorify } from "@js/textUtils";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  showDescription?: boolean;
+  class?: string;
+  rest?: any; // catch-all for any additional parameters, such as "aria-label"
+}
+
+const {
+  post,
+  showDescription = false,
+  class: className,
+  ...rest
+} = Astro.props as Props;
+const { title, description, pubDate, heroImage, categories } = post.data;
+---
+
+<article class=`flex grid gap-4 md:grid-cols-2 md:gap-8 ${className}` {...rest}>
+  <a
+    href={`/blog/${post.slug}/`}
+    class="aspect-video overflow-hidden rounded-sm"
+  >
+    <figure>
+      <Image
+        src={heroImage}
+        alt={`Cover for ${title}`}
+        width={500}
+        densities={[1, 1.5, 2]}
+        quality="high"
+        class="min-h-full w-full rounded-sm object-cover transition-all duration-1000 hover:scale-[1.02]"
+        transition:name={`blog-image-${post.slug}`}
+      />
+    </figure>
+  </a>
+  <div class="flex w-full flex-col gap-2 md:gap-4">
+    <div class="flex w-full flex-wrap gap-2 text-sm md:mt-6">
+      <!-- categories -->
+      <div class="flex items-center gap-3">
+        <div class="flex flex-wrap items-center">
+          {
+            categories.map((category, idx) => {
+              {
+                if (idx > 0) {
+                  return (
+                    <>
+                      <span class="description text-sm">,</span>
+                      <Category class="ml-2" category={category} />
+                    </>
+                  );
+                }
+              }
+              return <Category category={category} />;
+            })
+          }
+        </div>
+      </div>
+
+      <span>&bull;</span>
+
+      <!-- published date -->
+      <div class="description xl:text-sm">
+        <div class="flex">
+          <p class="whitespace-nowrap font-light uppercase">
+            {formatDate(pubDate)}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- title -->
+    <div>
+      <a
+        href={`/blog/${post.slug}/`}
+        class="transition duration-300 hover:text-primary-500"
+      >
+        <h2 class="font-serif text-2xl font-medium md:text-3xl">
+          {title}
+        </h2>
+      </a>
+    </div>
+
+    <!-- description -->
+    {
+      showDescription && (
+        <p class="description hidden text-sm md:block lg:text-base">
+          {description}
+        </p>
+      )
+    }
+  </div>
+</article>

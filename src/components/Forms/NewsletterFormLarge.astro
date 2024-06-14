@@ -1,0 +1,85 @@
+---
+/**
+ * * Bigger newsletter form component. Used in `src/components/Cta/NewsletterLarge.astro`.
+ */
+// components
+import Button from "@components/Button/Button.astro"
+import siteData from "@config/siteData.json"
+const { domain, title, contact } = siteData
+
+interface Props {
+  name: string; // name for your form, like "hero-newsletter". It is used for the various id's
+  class?: string; // classes for the form
+  rest?: any; // catch-all for any additional parameters, such as "aria-label"
+}
+
+const { name, class: classList, ...rest } = Astro.props as Props;
+---
+
+<form
+  id={`${name}-form`}
+  name={`${name}-form`}
+  class:list={["mt-4 flex flex-col gap-3", classList]}
+  method="POST" action={`https://formsubmit.co/${contact.email}`}
+  {...rest}
+>
+<input type="text" name="_honey" class="hidden">
+<input type="hidden" name="_autoresponse" value={`Welcome to the ${title} family!`}>
+<input type="hidden" name="_template" value="table">
+<!-- //TODO: Update callback to route to appropriate post submission page -->
+<input type="hidden" name="_next" value={`${Astro.url.origin}/`}>
+<input type="hidden" name="_subject" value={`Newsletter sign up: ${domain}`}>
+  <div>
+    <div class="grid gap-3 sm:grid-cols-2">
+      <div class="flex flex-col">
+        <label for={`${name}-fname`} class="sr-only">First Name</label>
+        <input
+          type="text"
+          class="form__input"
+          name="fname"
+          pattern="[A-Za-z]+"
+          id={`${name}-fname`}
+          placeholder="First name"
+          autocomplete="given-name"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for={`${name}-lname`} class="sr-only">Last Name</label>
+        <input
+          type="text"
+          class="form__input"
+          name="lname"
+          pattern="[A-Za-z]+"
+          id={`${name}-lname`}
+          placeholder="Last name"
+          autocomplete="family-name"
+        />
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for={`${name}-email`} class="sr-only">*Email</label>
+    <input
+      type="email"
+      class="form__input"
+      name="email"
+      id={`${name}-email`}
+      inputmode="email"
+      placeholder="Email"
+      autocomplete="email"
+      required
+    />
+  </div>
+
+  <Button variant="primary" type="submit" class="text-nowrap"
+    >Sign me up!</Button
+  >
+</form>
+
+<style lang="scss">
+  .newsletter__input--focus {
+    @apply focus:border-primary-600 focus:bg-base-100 focus:ring-offset-base-100 focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2;
+    @apply dark:focus:bg-base-900 dark:focus:ring-offset-base-900;
+  }
+</style>

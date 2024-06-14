@@ -1,0 +1,74 @@
+---
+// components
+import Button from "@components/Button/Button.astro"
+---
+
+<!-- create a contact me form where uses input their name, email, and message -->
+<section id="contact" class="mx-auto w-full rounded-lg">
+  <div class="rounded-lg">
+    <p class="description text-sm font-light">
+      Inputs marked with <span class="text-red-600">*</span> are required.
+    </p>
+    <form
+      id="contact-form"
+      name="contact form"
+      class="mt-4 flex flex-col gap-3"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="flex flex-col">
+            <label for="contact-fname" class="description">First Name</label>
+            <input
+              type="text"
+              class="form__input"
+              name="fname"
+              pattern="[A-Za-z]+"
+              id="contact-fname"
+              placeholder="Your first name"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <label for="contact-lname" class="description">Last Name</label>
+            <input
+              type="text"
+              class="form__input"
+              name="lname"
+              pattern="[A-Za-z]+"
+              id="contact-lname"
+              placeholder="Your last name"
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="contact-email" class="description mb-1"
+          >Email <span class="text-red-600">*</span>
+        </label>
+        <input
+          type="email"
+          class="form__input"
+          name="email"
+          id="contact-email"
+          inputmode="email"
+          placeholder="Your preferred contact email"
+          required
+        />
+      </div>
+      <div>
+        <label for="contact-message" class="description"
+          >Message <span class="text-red-600">*</span>
+        </label>
+        <textarea
+          name="message"
+          class="form__input"
+          id="contact-message"
+          rows="4"
+          placeholder="Your message here..."
+          required></textarea>
+      </div>
+      <Button variant="primary" type="submit">Send</Button>
+    </form>
+  </div>
+</section>

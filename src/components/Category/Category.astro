@@ -1,0 +1,17 @@
+---
+import { slugify, categorify } from "@js/textUtils";
+
+interface Props {
+  category: string;
+  class?: string;
+}
+
+const { category, class: className } = Astro.props as Props;
+---
+
+<a
+  href={`/categories/${slugify(category)}/`}
+  class={`description hover:text-primary-500 duration-300 font-light uppercase ${className}`}
+>
+  {categorify(category)}
+</a>

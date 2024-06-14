@@ -1,0 +1,27 @@
+---
+// utils
+import { getAllPosts, countItems, sortByValue } from "@js/blogUtils";
+import { categorify } from "@js/textUtils";
+
+const posts = await getAllPosts();
+const allCategories = posts.map((post) => post.data.categories).flat();
+const countedCategories = countItems(allCategories);
+const processedCategories = sortByValue(countedCategories);
+
+interface Props {
+  showCount?: boolean;
+}
+
+const { showCount = false } = Astro.props as Props;
+---
+
+<div class="flex flex-wrap justify-center gap-4">
+  {
+    processedCategories.map(([category, count]) => (
+      <a href={`/categories/${category}/`} class="button button--outline">
+        {categorify(category)}
+        {showCount && <span class="text-xs opacity-70">({count})</span>}
+      </a>
+    ))
+  }
+</div>
