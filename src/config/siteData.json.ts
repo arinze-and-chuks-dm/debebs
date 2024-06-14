@@ -48,7 +48,7 @@ const siteData: SiteDataProps = {
     email: 'issashade4ever@gmail.com',
     // TODO: Update twitter
     twitter: 'place_holder',
-    slug: 'main-author', // this must match an author slug in the authors content collection at src/content/authors/{slug}
+    slug: 'edwina-debebs', // this must match an author slug in the authors content collection at src/content/authors/{slug}
   },
   contact: {
     email: 'issashade4ever@gmail.com',
