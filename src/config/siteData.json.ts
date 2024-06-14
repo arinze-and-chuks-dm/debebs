@@ -45,7 +45,6 @@ const siteData: SiteDataProps = {
   // Your information!
   author: {
     name: 'Edwina Debebs',
-    // TODO: Update email
     email: 'issashade4ever@gmail.com',
     // TODO: Update twitter
     twitter: 'place_holder',
