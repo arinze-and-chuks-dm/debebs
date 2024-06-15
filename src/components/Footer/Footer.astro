@@ -1,11 +1,11 @@
 ---
 // components
-import FooterLink from "@components/Footer/FooterLink.astro";
-import SiteLogo from "@components/SiteLogo/SiteLogo.astro";
-import SocialIcon from "@components/SocialIcon/SocialIcon.astro";
+import FooterLink from "@components/Footer/FooterLink.astro"
+import SiteLogo from "@components/SiteLogo/SiteLogo.astro"
+import SocialIcon from "@components/SocialIcon/SocialIcon.astro"
 
 // data
-import siteData from "@config/siteData.json";
+import siteData from "@config/siteData.json"
 
 const today = new Date();
 ---
@@ -49,8 +49,8 @@ const today = new Date();
       <div class="flex flex-col font-light">
         <h3 class="footer__heading">Information</h3>
         <p>{siteData.address.city}, {siteData.address.state.abbreviation}</p>
-        <p>{siteData.contact.email}</p>
-        <p>{siteData.contact.phoneNumber}</p>
+        <a href={`mailto:${siteData.contact.email}`}>{siteData.contact.email}</p>
+        <a href={`tel:${siteData.contact.phoneNumber}`}>{siteData.contact.phoneNumber}</a>
       </div>
 
       <!-- Navigation -->
