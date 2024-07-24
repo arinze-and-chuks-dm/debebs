@@ -8,8 +8,6 @@ import playformCompress from '@playform/compress'
 import AutoImport from 'astro-auto-import'
 import { defineConfig } from 'astro/config'
 
-import vercel from '@astrojs/vercel/serverless'
-
 // https://astro.build/config
 export default defineConfig({
   output: 'hybrid',
@@ -49,10 +47,7 @@ export default defineConfig({
       },
     }),
   ],
-  adapter: vercel({
-    imageService: false,
-    webAnalytics: {
-      enabled: true,
-    },
+  adapter: netlify({
+    imageCDN: false,
   }),
 })
