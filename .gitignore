@@ -23,3 +23,24 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+dist
+.vscode
+npm-debug.log
+yarn-error.log
+.nyc_output
+coverage
+coverage.lcov
+*.swp
+*.bak
+*.tgz
+.DS_Store
+.next
+/.env
+/public
+__pycache__
+.vercel
+.turbo
+.eslintcache
+turbo-cache-key.json
+junit.xml
