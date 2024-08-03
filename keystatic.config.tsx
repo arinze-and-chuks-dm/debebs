@@ -26,7 +26,7 @@ export default config({
   //   branchPrefix: 'keystatic-cms/',
   // },
   // works in local mode in dev, then cloud mode in prod
-  storage: import.meta.env.DEV === true ? { kind: 'local' } : { kind: 'cloud' },
+  storage: { kind: 'cloud' },
   // cloud deployment is free to sign up (up to 3 users per team)
   // docs: https://keystatic.com/docs/cloud
   // create a Keystatic Cloud account here: https://keystatic.cloud/
