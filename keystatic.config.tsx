@@ -15,11 +15,9 @@ import { collection, config, fields } from '@keystatic/core'
 // components for preview purposes
 import ComponentBlocks from '@components/KeystaticComponents/ComponentBlocks'
 
-console.log({ env: import.meta.env.DEV })
-
 export default config({
   // works in local mode in dev, then cloud mode in prod
-  storage: import.meta.env.DEV === true ? { kind: 'local' } : {
+  storage: {
     kind: 'github',
     repo: {
       owner: 'arinze-and-chuks-dm',
@@ -27,8 +25,6 @@ export default config({
     },
     branchPrefix: 'keystatic-cms/',
   },
-  // works in local mode in dev, then cloud mode in prod
-  // storage: import.meta.env.DEV === true ? { kind: 'local' } : { kind: 'cloud' },
   // cloud deployment is free to sign up (up to 3 users per team)
   // docs: https://keystatic.com/docs/cloud
   // create a Keystatic Cloud account here: https://keystatic.cloud/
