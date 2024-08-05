@@ -29,7 +29,7 @@ export default config({
   // docs: https://keystatic.com/docs/cloud
   // create a Keystatic Cloud account here: https://keystatic.cloud/
   storage: import.meta.env.DEV === true ? { kind: 'local' } : { kind: 'cloud' },
-  cloud: { project: 'debebs' },
+  cloud: { project: 'arinze-chuks-dm/debebs' },
   ui: {
     brand: { name: 'Debebs Media' },
   },
